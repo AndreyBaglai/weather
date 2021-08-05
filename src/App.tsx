@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import './App.scss';
+import Header from './components/Header/Header';
 
 const API_KEY = '0f3e903b21bbba52b9410fe0033434f1';
 
@@ -42,15 +43,7 @@ function App() {
 
   return (
     <div className="container">
-      <header className="header">
-        
-
-        <select name="language" id="lang" className="select-lang">
-          <option value="EN">EN</option>
-          <option value="RU">RU</option>
-          <option value="UA">UA</option>
-        </select>
-      </header>
+      <Header />
       <main className="main">
         <div className="city-weather">
           <div className="day">

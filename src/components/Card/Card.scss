@@ -1,0 +1,57 @@
+.card {
+  margin: 20px 40px 40px 0;
+  width: 350px;
+  height: 257px;
+  background: #fff1fe;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 5px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &-top,
+  &-bottom {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-bottom {
+    align-items: flex-end;
+  }
+
+  .graphic {
+    width: 320px;
+    height: 51px;
+    background: transparent linear-gradient(180deg, #ff715b 0%, #fff4f4 100%);
+    opacity: 0.3;
+  }
+
+  .temperature-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+
+    .temperature {
+      font-size: 48px;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .metric {
+      font-weight: normal;
+      position: relative;
+      bottom: 24px;
+    }
+  }
+
+  .weather-info {
+    text-align: right;
+    p {
+      margin: 4px 0;
+
+      .value {
+        color: #459de9;
+      }
+    }
+  }
+}

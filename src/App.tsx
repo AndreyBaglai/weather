@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import './App.scss';
 import Header from './components/Header/Header';
+import Main from './components/Main/Main';
 
 const API_KEY = '0f3e903b21bbba52b9410fe0033434f1';
 
@@ -44,42 +45,7 @@ function App() {
   return (
     <div className="container">
       <Header />
-      <main className="main">
-        <div className="city-weather">
-          <div className="day">
-            <div className="day-top">
-              <div className="country-info">
-                <div>Dnipro, UA</div>
-                <div>Fri, 19 February, 10:17</div>
-              </div>
-              <div className="weather-icon">
-                <img src="" alt="Icon" />
-                Text
-              </div>
-            </div>
-            <div className="graphic"></div>
-            <div className="day-bottom">
-              <div className="temperature-wrapper">
-                <span className="temperature">+3</span>
-                <span className="metric">
-                  <span>&deg;C</span> | <span>&deg;F</span>
-                </span>
-              </div>
-              <div className="weather-info">
-                <p>
-                  Wind: <span className="value">1m/s</span>
-                </p>
-                <p>
-                  Humidity: <span className="value">1%</span>
-                </p>
-                <p>
-                  Pressure: <span className="value">1Pa</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
+      <Main />
     </div>
   );
 }

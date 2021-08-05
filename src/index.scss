@@ -1,0 +1,19 @@
+body {
+  font-family: 'Jost', sans-serif;
+}
+
+.day {
+  width: 350px;
+  height: 257px;
+  background: #fff1fe;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 5px;
+}
+
+.graphic {
+  width: 320px;
+  height: 51px;
+  background: transparent linear-gradient(180deg, #ff715b 0%, #fff4f4 100%) 0% 0% no-repeat
+    padding-box;
+  opacity: 0.3;
+}

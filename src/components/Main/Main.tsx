@@ -11,9 +11,13 @@ type MainPropsType = {
 export default function Main({ onChangeTemperature, cards }: MainPropsType) {
   return (
     <main className="main">
-      <Card onChangeTemperature={onChangeTemperature} />
-      {/* <Card /> */}
-      {/* <Card /> */}
+      {cards.map((card) => (
+        <Card
+          key={card.temperature + card.pressure}
+          onChangeTemperature={onChangeTemperature}
+          info={card}
+        />
+      ))}
     </main>
   );
 }

@@ -36,7 +36,8 @@ function App() {
       text_icon: data.weather[0].main,
       wind_speed: data.wind.speed,
     };
-    console.log(card);
+    // console.log(card);
+    input.value = '';
     setCards([card, ...cards]);
   };
 
@@ -70,8 +71,11 @@ function App() {
   return (
     <div className="container">
       <Header onSubmitForm={onSubmitForm} />
-      {/* {cards.length === 0 ? <p>Please, input city name</p> : <Main />} */}
-      <Main onChangeTemperature={onChangeTemperature} cards={cards} />
+      {cards.length === 0 ? (
+        <p>Please, input city name</p>
+      ) : (
+        <Main onChangeTemperature={onChangeTemperature} cards={cards} />
+      )}
     </div>
   );
 }

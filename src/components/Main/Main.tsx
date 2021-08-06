@@ -1,6 +1,7 @@
 import React from 'react';
 import { CardModel } from '../../model/card-model';
 import Card from '../Card/Card';
+
 import './Main.scss';
 
 type MainPropsType = {
@@ -13,7 +14,7 @@ export default function Main({ onChangeTemperature, cards }: MainPropsType) {
     <main className="main">
       {cards.map((card) => (
         <Card
-          key={card.temperature + card.pressure}
+          key={card.time + card.city}
           onChangeTemperature={onChangeTemperature}
           info={card}
         />

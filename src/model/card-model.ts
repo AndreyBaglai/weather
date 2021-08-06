@@ -9,4 +9,5 @@ export type CardModel = {
   text_icon: string;
   time: number;
   feels: number;
+  description: string;
 };

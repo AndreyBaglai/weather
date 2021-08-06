@@ -1,5 +1,7 @@
 import React from 'react';
 import { CardModel } from '../../model/card-model';
+import { DAYS, MONTHS } from '../../variables/variables';
+
 import './Card.scss';
 
 type CardPropsType = {
@@ -8,22 +10,6 @@ type CardPropsType = {
 };
 
 export default function Card({ onChangeTemperature, info }: CardPropsType) {
-  const months = [
-    'Jun',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
   const formatTime = () => {
     const date = new Date();
     const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
@@ -37,7 +23,7 @@ export default function Card({ onChangeTemperature, info }: CardPropsType) {
     const day = time.getDay();
     const date = time.getDate();
 
-    return `${days[day]}, ${date} ${months[month]},`
+    return `${DAYS[day]}, ${date} ${MONTHS[month]},`;
   };
 
   return (
@@ -91,6 +77,7 @@ export default function Card({ onChangeTemperature, info }: CardPropsType) {
           </div>
         </div>
         <div className="weather-info">
+          <p>{info.description}</p>
           <p>
             Wind: <span className="value">{info.wind_speed}m/s</span>
           </p>

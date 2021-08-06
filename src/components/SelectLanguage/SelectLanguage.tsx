@@ -1,12 +1,18 @@
 import React from 'react';
+import { getLangFromLS } from '../../services/localStorage';
+
 import './SelectLanguage.scss';
 
-export default function SelectLanguage() {
+type SelectLanguagePropsType = {
+  onSelectLang: (e: React.ChangeEvent) => void;
+};
+
+export default function SelectLanguage({ onSelectLang }: SelectLanguagePropsType) {
   return (
-    <select name="language" id="lang" className="select-lang">
-      <option value="EN">EN</option>
-      <option value="RU">RU</option>
-      <option value="UA">UA</option>
+    <select name="language" id="lang" className="select-lang" onChange={onSelectLang} defaultValue={getLangFromLS()}>
+      <option value="en">EN</option>
+      <option value="ru">RU</option>
+      <option value="uk">UA</option>
     </select>
   );
 }

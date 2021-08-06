@@ -1,39 +1,50 @@
 import React, { useEffect, useState } from 'react';
-import './App.scss';
+
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import { CardModel } from './model/card-model';
-import { getCardsFromLS, setCardsToLS } from './services/localStorage';
+import { getCardsFromLS, getLangFromLS, setCardsToLS, setLangToLS } from './services/localStorage';
 import { getWeatherByCity } from './services/weather-api';
 
-// по городу https://api.openweathermap.org/data/2.5/weather?q=Kiev&units=metric&lang=en&appid=0f3e903b21bbba52b9410fe0033434f1 берем координаты и по координатам
-// https://api.openweathermap.org/data/2.5/onecall?lat=50.450001&lon=30.523333&exclude=hourly,minutely&lang=en&units=metric&appid=0f3e903b21bbba52b9410fe0033434f1
+import './App.scss';
 
 function App() {
   const [cards, setCards] = useState<CardModel[]>([]);
   const [isCelsius, setIsCelsius] = useState(true);
+  const [lang, setLang] = useState('en');
 
-  const init = () => {
+  // const init = () => {
+  //   const cards = getCardsFromLS();
+  //   const currentLang = getLangFromLS();
+
+  //   if (cards.length) {
+  //     setCards(cards);
+  //   }
+
+  //   currentLang !== '' ? setLang(currentLang) : setLangToLS(lang);
+  // };
+
+  useEffect(() => {
     const cards = getCardsFromLS();
+    const currentLang = getLangFromLS();
 
     if (cards.length) {
       setCards(cards);
     }
-  };
 
-  useEffect(() => {
-    init();
-  }, []);
+    currentLang !== '' ? setLang(currentLang) : setLangToLS(lang);
+  }, [lang]);
 
   const onSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault();
     const target = e.target as HTMLFormElement;
     const input = target.querySelector('#city') as HTMLInputElement;
+    const cityName = input.value;
 
     try {
-      if (input.value === '') return;
+      if (cityName === '') return;
 
-      const data = await getWeatherByCity(input.value);
+      const data = await getWeatherByCity(cityName, lang);
       if (!data) return;
 
       const card: CardModel = {
@@ -46,11 +57,15 @@ function App() {
         feels: data.main.feels_like,
         icon: data.weather[0].icon,
         text_icon: data.weather[0].main,
+        description: data.weather[0].description,
         wind_speed: data.wind.speed,
       };
+
+      const uniqCards = cards.filter((item) => item.city !== card.city);
       input.value = '';
-      setCards([card, ...cards]);
-      setCardsToLS([card, ...cards]);
+
+      setCardsToLS([card, ...uniqCards]);
+      setCards([card, ...uniqCards]);
     } catch (err) {
       input.value = '';
       console.log('Incorrect city name');
@@ -83,9 +98,16 @@ function App() {
     }
   };
 
+  const onSelectLang = (e: React.ChangeEvent) => {
+    const target = e.target as HTMLOptionElement;
+    const newLang = target.value
+    setLangToLS(newLang);
+    setLang(newLang);
+  };
+
   return (
     <div className="container">
-      <Header onSubmitForm={onSubmitForm} />
+      <Header onSubmitForm={onSubmitForm} onSelectLang={onSelectLang} />
       {cards.length === 0 ? (
         <p>Please, input city name</p>
       ) : (

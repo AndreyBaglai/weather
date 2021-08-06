@@ -13,17 +13,6 @@ function App() {
   const [isCelsius, setIsCelsius] = useState(true);
   const [lang, setLang] = useState('en');
 
-  // const init = () => {
-  //   const cards = getCardsFromLS();
-  //   const currentLang = getLangFromLS();
-
-  //   if (cards.length) {
-  //     setCards(cards);
-  //   }
-
-  //   currentLang !== '' ? setLang(currentLang) : setLangToLS(lang);
-  // };
-
   useEffect(() => {
     const cards = getCardsFromLS();
     const currentLang = getLangFromLS();
@@ -108,7 +97,7 @@ function App() {
   return (
     <div className="container">
       <Header onSubmitForm={onSubmitForm} onSelectLang={onSelectLang} />
-      {cards.length === 0 ? (
+      {!cards.length ? (
         <p>Please, input city name</p>
       ) : (
         <Main onChangeTemperature={onChangeTemperature} cards={cards} />

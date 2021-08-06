@@ -1,5 +1,4 @@
 import React from 'react';
-import { CardModel } from '../../model/card-model';
 import './Card.scss';
 
 type CardPropsType = {
@@ -7,6 +6,8 @@ type CardPropsType = {
 };
 
 export default function Card({ onChangeTemperature }: CardPropsType) {
+  const months = ['Jun', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   return (
     <div className="card">
       <div className="card-top">

@@ -3,11 +3,7 @@ import './App.scss';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import { CardModel } from './model/card-model';
-import {
-  getCurrentUserWeather,
-  getWeatherByCity,
-  getWeatherByCoordinates,
-} from './services/weather-api';
+import { getWeatherByCity } from './services/weather-api';
 
 // по городу https://api.openweathermap.org/data/2.5/weather?q=Kiev&units=metric&lang=en&appid=0f3e903b21bbba52b9410fe0033434f1 берем координаты и по координатам
 // https://api.openweathermap.org/data/2.5/onecall?lat=50.450001&lon=30.523333&exclude=hourly,minutely&lang=en&units=metric&appid=0f3e903b21bbba52b9410fe0033434f1
@@ -17,18 +13,31 @@ function App() {
   const [isCelsius, setIsCelsius] = useState(true);
 
   useEffect(() => {
-    const card: CardModel | null = getCurrentUserWeather();
-    if (card) {
-      setCards([card, ...cards]);
-    }
+    // const card: CardModel | null = getCurrentUserWeather();
+    // if (card) {
+    //   setCards([card, ...cards]);
+    // }
   }, []);
 
   const onSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault();
     const target = e.target as HTMLFormElement;
     const input = target.querySelector('#city') as HTMLInputElement;
-    const card = await getWeatherByCity(input.value);
+    const data = await getWeatherByCity(input.value);
+    const card: CardModel = {
+      city: data.name,
+      time: data.dt,
+      country: data.sys.country,
+      temperature: data.main.temp,
+      humidity: data.main.humidity,
+      pressure: data.main.pressure,
+      feels: data.main.feels_like,
+      icon: data.weather[0].icon,
+      text_icon: data.weather[0].main,
+      wind_speed: data.wind.speed,
+    };
     console.log(card);
+    setCards([card, ...cards]);
   };
 
   const onChangeTemperature = (e: React.MouseEvent) => {
@@ -62,7 +71,7 @@ function App() {
     <div className="container">
       <Header onSubmitForm={onSubmitForm} />
       {/* {cards.length === 0 ? <p>Please, input city name</p> : <Main />} */}
-      <Main onChangeTemperature={onChangeTemperature} />
+      <Main onChangeTemperature={onChangeTemperature} cards={cards} />
     </div>
   );
 }

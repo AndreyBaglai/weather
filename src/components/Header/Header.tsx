@@ -3,9 +3,15 @@ import Form from '../Form/Form';
 import SelectLanguage from '../SelectLanguage/SelectLanguage';
 import './Header.scss';
 
-export default function Header() {
-  return <header className="header">
-    <Form />
-    <SelectLanguage />
-  </header>;
+type HeaderPropsTYpe = {
+  onSubmitForm: (e: React.FormEvent) => {};
+};
+
+export default function Header({ onSubmitForm }: HeaderPropsTYpe) {
+  return (
+    <header className="header">
+      <Form onSubmitForm={onSubmitForm} />
+      <SelectLanguage />
+    </header>
+  );
 }

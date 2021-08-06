@@ -1,8 +1,17 @@
 import React from 'react';
 import Card from '../Card/Card';
+import './Main.scss';
 
-export default function Main() {
-  return <main className="main">
-    <Card />
-  </main>;
+type MainPropsType = {
+  onChangeTemperature: (e: React.MouseEvent) => void;
+};
+
+export default function Main({ onChangeTemperature }: MainPropsType) {
+  return (
+    <main className="main">
+      <Card onChangeTemperature={onChangeTemperature} />
+      {/* <Card /> */}
+      {/* <Card /> */}
+    </main>
+  );
 }

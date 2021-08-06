@@ -41,6 +41,10 @@
       font-weight: normal;
       position: relative;
       bottom: 24px;
+
+      .celsius, .fahrenheit {
+        cursor: pointer;
+      }
     }
   }
 

@@ -1,7 +1,12 @@
 import React from 'react';
+import { CardModel } from '../../model/card-model';
 import './Card.scss';
 
-export default function Card() {
+type CardPropsType = {
+  onChangeTemperature: (e: React.MouseEvent) => void;
+};
+
+export default function Card({ onChangeTemperature }: CardPropsType) {
   return (
     <div className="card">
       <div className="card-top">
@@ -18,10 +23,10 @@ export default function Card() {
       <div className="graphic"></div>
 
       <div className="card-bottom">
-        <div className="temperature-wrapper">
+        <div className="temperature-wrapper" onClick={onChangeTemperature}>
           <span className="temperature">+3</span>
           <span className="metric">
-            <span>&deg;C</span> | <span>&deg;F</span>
+            <span className="celsius">&deg;C</span> |<span className="fahrenheit">&deg;F</span>
           </span>
         </div>
         <div className="weather-info">

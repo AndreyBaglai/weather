@@ -25,5 +25,10 @@
     text-transform: capitalize;
     font-size: 18px;
     cursor: pointer;
+    transition: all 0.5s ease;
+
+    &:hover {
+      background: darken(#459de9, 10%);
+    }
   }
 }

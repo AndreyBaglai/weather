@@ -21,6 +21,10 @@
     font-weight: bold;
   }
 
+  .date {
+    font-size: 18px;
+  }
+
   &-top,
   &-bottom {
     display: flex;
@@ -32,17 +36,22 @@
   }
 
   .weather-icon {
-    color: #C5C5C5;
+    color: #c5c5c5;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .icon {
+      max-height: 70px;
+    }
   }
 
   .graphic {
-    width: 320px;
-    height: 51px;
-    background: transparent linear-gradient(180deg, #ff715b 0%, #fff4f4 100%);
+    width: 340px;
+    height: 52px;
     opacity: 0.3;
+    position: relative;
+    bottom: 30px;
   }
 
   .temperature-wrapper {
@@ -53,7 +62,7 @@
     justify-content: space-between;
 
     .feels {
-      color: #C5C5C5;
+      color: #c5c5c5;
     }
 
     .temperature {
@@ -67,7 +76,8 @@
       position: relative;
       bottom: 24px;
 
-      .celsius, .fahrenheit {
+      .celsius,
+      .fahrenheit {
         cursor: pointer;
       }
     }

@@ -23,33 +23,41 @@ function App() {
     e.preventDefault();
     const target = e.target as HTMLFormElement;
     const input = target.querySelector('#city') as HTMLInputElement;
-    const data = await getWeatherByCity(input.value);
-    const card: CardModel = {
-      city: data.name,
-      time: data.dt,
-      country: data.sys.country,
-      temperature: data.main.temp,
-      humidity: data.main.humidity,
-      pressure: data.main.pressure,
-      feels: data.main.feels_like,
-      icon: data.weather[0].icon,
-      text_icon: data.weather[0].main,
-      wind_speed: data.wind.speed,
-    };
-    // console.log(card);
-    input.value = '';
-    setCards([card, ...cards]);
+
+    try {
+      if (input.value === '') return;
+
+      const data = await getWeatherByCity(input.value);
+      if (!data) return;
+
+      const card: CardModel = {
+        city: data.name,
+        time: data.dt,
+        country: data.sys.country,
+        temperature: data.main.temp,
+        humidity: data.main.humidity,
+        pressure: data.main.pressure,
+        feels: data.main.feels_like,
+        icon: data.weather[0].icon,
+        text_icon: data.weather[0].main,
+        wind_speed: data.wind.speed,
+      };
+      input.value = '';
+      setCards([card, ...cards]);
+    } catch (err) {
+      input.value = '';
+      console.log('Incorrect city name');
+    }
   };
 
   const onChangeTemperature = (e: React.MouseEvent) => {
     const currentTarget = e.currentTarget as HTMLElement;
     const target = e.target as HTMLElement;
 
-    if (target.classList.contains('fahrenheit') && !isCelsius) {
-      return;
-    }
-
-    if (target.classList.contains('celsius') && isCelsius) {
+    if (
+      (target.classList.contains('fahrenheit') && !isCelsius) ||
+      (target.classList.contains('celsius') && isCelsius)
+    ) {
       return;
     }
 

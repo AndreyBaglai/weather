@@ -1,5 +1,3 @@
-import { CardModel } from "../model/card-model";
-
 // 2904218e66790986ea8f1701ca13b7b5
 // 0f3e903b21bbba52b9410fe0033434f1
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/';

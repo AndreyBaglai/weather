@@ -3,6 +3,7 @@ import './App.scss';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
 import { CardModel } from './model/card-model';
+import { getCardsFromLS, setCardsToLS } from './services/localStorage';
 import { getWeatherByCity } from './services/weather-api';
 
 // по городу https://api.openweathermap.org/data/2.5/weather?q=Kiev&units=metric&lang=en&appid=0f3e903b21bbba52b9410fe0033434f1 берем координаты и по координатам
@@ -12,11 +13,16 @@ function App() {
   const [cards, setCards] = useState<CardModel[]>([]);
   const [isCelsius, setIsCelsius] = useState(true);
 
+  const init = () => {
+    const cards = getCardsFromLS();
+
+    if (cards.length) {
+      setCards(cards);
+    }
+  };
+
   useEffect(() => {
-    // const card: CardModel | null = getCurrentUserWeather();
-    // if (card) {
-    //   setCards([card, ...cards]);
-    // }
+    init();
   }, []);
 
   const onSubmitForm = async (e: React.FormEvent) => {
@@ -44,6 +50,7 @@ function App() {
       };
       input.value = '';
       setCards([card, ...cards]);
+      setCardsToLS([card, ...cards]);
     } catch (err) {
       input.value = '';
       console.log('Incorrect city name');

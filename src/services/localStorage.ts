@@ -25,6 +25,12 @@ export function removeCardFromLS(id: number) {
   }
 }
 
+export function updateCardByIdInLS(card: CardModel, id: number) {
+  removeCardFromLS(id);
+  const cards = getCardsFromLS();
+  setCardsToLS([card, ...cards]);
+}
+
 export function getLangFromLS(): string {
   const lang = localStorage.getItem(CURRENT_LANG);
   if (lang) return JSON.parse(lang);

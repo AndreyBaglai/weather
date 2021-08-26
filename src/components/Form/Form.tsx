@@ -35,6 +35,7 @@ const Form = observer(() => {
         text_icon: data.weather[0].main,
         description: data.weather[0].description,
         wind_speed: data.wind.speed,
+        isCelsius: true,
       };
 
       input.value = '';

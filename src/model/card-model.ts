@@ -11,4 +11,5 @@ export type CardModel = {
   time: number;
   feels: number;
   description: string;
+  isCelsius: boolean;
 };

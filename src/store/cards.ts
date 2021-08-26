@@ -16,8 +16,21 @@ class Cards {
     this.cards.unshift(card);
   }
 
+  getCardById(id: number) {
+    return this.cards.find((card: CardModel) => card.id === id);
+  }
+
   removeCardById(id: number) {
     this.cards = this.cards.filter((card: CardModel) => card.id !== id);
+  }
+
+  updateCardTemperature(newTemperature: number, id: number) {
+    this.cards = this.cards.map((card: CardModel) => {
+      if (card.id === id) {
+        card.temperature = newTemperature;
+      }
+      return card;
+    });
   }
 
   updateCards(cards: CardModel[]) {

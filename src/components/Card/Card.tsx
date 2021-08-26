@@ -27,18 +27,35 @@ export default function Card({ onChangeTemperature, onRemoveCard, info }: CardPr
     return `${DAYS[day]}, ${date} ${MONTHS[month]},`;
   };
 
+  const formatTemperature = (temperature: number) => {
+    const roundedTemperature = Math.ceil(temperature);
+    if (roundedTemperature === 0) return '0';
+
+    return roundedTemperature > 0
+      ? `+${roundedTemperature}`
+      : `-${roundedTemperature}`;
+  };
+
   return (
-    <div className="card" data-id={info.id}>
-      <button className="remove-card" onClick={onRemoveCard}>X</button>
+    <div className="card" id={String(info.id)}>
+      <button className="remove-card" onClick={onRemoveCard}>
+        X
+      </button>
       <div className="card-top">
         <div className="country-info">
           <div className="country">
             {info.city}, {info.country}
           </div>
-          <div className="date">{formatDate()} {formatTime()}</div>
+          <div className="date">
+            {formatDate()} {formatTime()}
+          </div>
         </div>
         <div className="weather-icon">
-          <img className="icon" src={`https://openweathermap.org/img/wn/${info.icon}@2x.png`} alt="Icon" />
+          <img
+            className="icon"
+            src={`https://openweathermap.org/img/wn/${info.icon}@2x.png`}
+            alt="Icon"
+          />
           <p className="text-icon">{info.text_icon}</p>
         </div>
       </div>
@@ -64,13 +81,10 @@ export default function Card({ onChangeTemperature, onRemoveCard, info }: CardPr
       <div className="card-bottom">
         <div className="temperature-wrapper" onClick={onChangeTemperature}>
           <div className="main-temperature">
-            <span className="temperature">
-              {Math.ceil(info.temperature) > 0
-                ? `+${Math.ceil(info.temperature)}`
-                : `-${Math.ceil(info.temperature)}`}
-            </span>
+            <span className="temperature">{formatTemperature(info.temperature)}</span>
             <span className="metric">
-              <span className="celsius">&deg;C</span> |<span className="fahrenheit">&deg;F</span>
+              <span className={`celsius ${info.isCelsius ? 'active' : ''}`}>&deg;C</span> |{' '}
+              <span className={`fahrenheit ${!info.isCelsius ? 'active' : ''}`}>&deg;F</span>
             </span>
           </div>
           <div className="feels">

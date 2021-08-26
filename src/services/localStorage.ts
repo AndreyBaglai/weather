@@ -13,6 +13,10 @@ export function setCardsToLS(cards: CardModel[]): void {
   localStorage.setItem(COLLECTION_CARDS, JSON.stringify(cards));
 }
 
+export function removeAllCardsFromLS() {
+  localStorage.removeItem(COLLECTION_CARDS);
+}
+
 export function getLangFromLS(): string {
   const lang = localStorage.getItem(CURRENT_LANG);
   if (lang) return JSON.parse(lang);

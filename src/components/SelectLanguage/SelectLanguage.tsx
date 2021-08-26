@@ -1,18 +1,31 @@
 import React from 'react';
-import { getLangFromLS } from '../../services/localStorage';
+import { getLangFromLS, setLangToLS } from '../../services/localStorage';
+import languageStore from '../../store/language';
+import { observer } from 'mobx-react-lite';
 
 import './SelectLanguage.scss';
 
-type SelectLanguagePropsType = {
-  onSelectLang: (e: React.ChangeEvent) => void;
-};
+const SelectLanguage = observer(() => {
+  const onSelectLang = (e: React.ChangeEvent) => {
+    const target = e.target as HTMLOptionElement;
+    const selectedLang = target.value;
 
-export default function SelectLanguage({ onSelectLang }: SelectLanguagePropsType) {
+    languageStore.changeLang(selectedLang);
+    setLangToLS(selectedLang);
+  };
+
   return (
-    <select name="language" id="lang" className="select-lang" onChange={onSelectLang} defaultValue={getLangFromLS()}>
+    <select
+      name="language"
+      id="lang"
+      className="select-lang"
+      onChange={onSelectLang}
+      defaultValue={getLangFromLS()}>
       <option value="en">EN</option>
       <option value="ru">RU</option>
       <option value="uk">UA</option>
     </select>
   );
-}
+});
+
+export default SelectLanguage;

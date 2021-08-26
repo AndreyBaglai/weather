@@ -1,19 +1,22 @@
 import React from 'react';
 import Form from '../Form/Form';
 import SelectLanguage from '../SelectLanguage/SelectLanguage';
+import cardsStore from '../../store/cards';
 
 import './Header.scss';
+import { removeAllCardsFromLS } from '../../services/localStorage';
 
-type HeaderPropsTYpe = {
-  onSubmitForm: (e: React.FormEvent) => void;
-  onSelectLang: (e: React.ChangeEvent) => void;
-};
-
-export default function Header({ onSubmitForm, onSelectLang }: HeaderPropsTYpe) {
+export default function Header() {
+  const onRemoveAllCards = () => {
+    cardsStore.removeAllCards();
+    removeAllCardsFromLS();
+  }
+  
   return (
     <header className="header">
-      <Form onSubmitForm={onSubmitForm} />
-      <SelectLanguage onSelectLang={onSelectLang} />
+      <Form />
+      <button className="remove-all" onClick={onRemoveAllCards}>Remove all</button>
+      <SelectLanguage />
     </header>
   );
 }

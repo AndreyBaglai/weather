@@ -3,6 +3,7 @@ import { CardModel } from '../../model/card-model';
 import Card from '../Card/Card';
 import cardsStore from '../../store/cards';
 import { observer } from 'mobx-react-lite';
+import { removeCardFromLS } from '../../services/localStorage';
 
 import './Main.scss';
 
@@ -33,10 +34,18 @@ const Main = observer(() => {
     }
   };
 
+  const onRemoveCard = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    const id = Number(target.parentElement?.dataset.id);
+
+    cardsStore.removeCardById(id);
+    removeCardFromLS(id);
+  }
+
   return (
     <main className="main">
       {cardsStore.totalCards.map((card: CardModel) => (
-        <Card key={card.id} onChangeTemperature={onChangeTemperature} info={card} />
+        <Card key={card.id} onChangeTemperature={onChangeTemperature} onRemoveCard={onRemoveCard} info={card} />
       ))}
     </main>
   );

@@ -16,6 +16,10 @@ class Cards {
     this.cards.unshift(card);
   }
 
+  removeCardById(id: number) {
+    this.cards = this.cards.filter((card: CardModel) => card.id !== id);
+  }
+
   updateCards(cards: CardModel[]) {
     this.cards = [...cards];
   }

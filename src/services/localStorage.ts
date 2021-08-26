@@ -17,6 +17,14 @@ export function removeAllCardsFromLS() {
   localStorage.removeItem(COLLECTION_CARDS);
 }
 
+export function removeCardFromLS(id: number) {
+  const cards = getCardsFromLS();
+  if (cards.length) {
+    const updateCards = cards.filter((card: CardModel) => card.id !== id);
+    setCardsToLS(updateCards);
+  }
+}
+
 export function getLangFromLS(): string {
   const lang = localStorage.getItem(CURRENT_LANG);
   if (lang) return JSON.parse(lang);

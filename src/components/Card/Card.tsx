@@ -6,10 +6,11 @@ import './Card.scss';
 
 type CardPropsType = {
   onChangeTemperature: (e: React.MouseEvent) => void;
+  onRemoveCard: (e: React.MouseEvent) => void;
   info: CardModel;
 };
 
-export default function Card({ onChangeTemperature, info }: CardPropsType) {
+export default function Card({ onChangeTemperature, onRemoveCard, info }: CardPropsType) {
   const formatTime = () => {
     const date = new Date();
     const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
@@ -27,7 +28,8 @@ export default function Card({ onChangeTemperature, info }: CardPropsType) {
   };
 
   return (
-    <div className="card">
+    <div className="card" data-id={info.id}>
+      <button className="remove-card" onClick={onRemoveCard}>X</button>
       <div className="card-top">
         <div className="country-info">
           <div className="country">

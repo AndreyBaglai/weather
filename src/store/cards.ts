@@ -1,10 +1,10 @@
-import { makeAutoObservable } from "mobx";
-import { CardModel } from "../model/card-model";
+import { makeAutoObservable } from 'mobx';
+import { CardModel } from '../model/card-model';
 
 class Cards {
   cards: CardModel[] = [];
 
-  constructor () {
+  constructor() {
     makeAutoObservable(this);
   }
 
@@ -13,7 +13,17 @@ class Cards {
   }
 
   addCard(card: CardModel) {
+    if (this.isRepeatCard(card)) return;
     this.cards.unshift(card);
+  }
+
+  isRepeatCard(card: CardModel) {
+    return this.cards.some((item: CardModel) => {
+      return (
+        item.city.toLowerCase() === card.city.toLowerCase() &&
+        item.description.toLowerCase() === card.description.toLowerCase()
+      );
+    });
   }
 
   getCardById(id: number) {

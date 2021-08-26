@@ -2,9 +2,9 @@ import React from 'react';
 import Form from '../Form/Form';
 import SelectLanguage from '../SelectLanguage/SelectLanguage';
 import cardsStore from '../../store/cards';
+import { removeAllCardsFromLS } from '../../services/localStorage';
 
 import './Header.scss';
-import { removeAllCardsFromLS } from '../../services/localStorage';
 
 export default function Header() {
   const onRemoveAllCards = () => {

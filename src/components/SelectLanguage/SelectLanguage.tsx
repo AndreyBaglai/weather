@@ -1,7 +1,8 @@
 import React from 'react';
+import { observer } from 'mobx-react-lite';
+
 import { getLangFromLS, setLangToLS } from '../../services/localStorage';
 import languageStore from '../../store/language';
-import { observer } from 'mobx-react-lite';
 
 import './SelectLanguage.scss';
 

@@ -1,9 +1,11 @@
 import React from 'react';
+import { observer } from 'mobx-react-lite';
+
 import { CardModel } from '../../model/card-model';
 import Card from '../Card/Card';
 import cardsStore from '../../store/cards';
-import { observer } from 'mobx-react-lite';
 import { removeCardFromLS, updateCardByIdInLS } from '../../services/localStorage';
+import { convertToCelsius, convertToFahrenheit } from '../../shared/convert-temperature';
 
 import './Main.scss';
 
@@ -18,12 +20,12 @@ const Main = observer(() => {
     if (currentCard) {
       if (currentCard.isCelsius && target.classList.contains('fahrenheit')) {
         currentCard.isCelsius = false;
-        currentCard.temperature = Math.floor(currentCard.temperature * (9 / 5) + 32);
+        currentCard.temperature = convertToCelsius(currentCard.temperature);
       }
 
       if (!currentCard.isCelsius && target.classList.contains('celsius')) {
         currentCard.isCelsius = true;
-        currentCard.temperature = Math.ceil((currentCard.temperature - 32) * (5 / 9));
+        currentCard.temperature = convertToFahrenheit(currentCard.temperature);
       }
 
       cardsStore.updateCardTemperature(currentCard.temperature, id);

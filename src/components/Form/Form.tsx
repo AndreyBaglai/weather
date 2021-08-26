@@ -1,11 +1,11 @@
 import React from 'react';
+import { observer } from 'mobx-react-lite';
+
 import { CardModel } from '../../model/card-model';
 import { getWeatherByCity } from '../../services/weather-api';
 import languageStore from '../../store/language';
 import cardsStore from '../../store/cards';
-
 import { setCardsToLS } from '../../services/localStorage';
-import { observer } from 'mobx-react-lite';
 
 import './Form.scss';
 

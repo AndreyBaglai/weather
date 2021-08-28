@@ -1,6 +1,7 @@
 .form {
   display: flex;
   align-items: center;
+  position: relative;
 
   .city-field {
     width: 250px;
@@ -12,6 +13,15 @@
     padding-left: 6px;
     border: none;
     margin-right: 20px;
+  }
+
+  .error {
+    color: rgb(221, 12, 12);
+    position: absolute;
+    bottom: -30px;
+    font-weight: bold;
+    left: 0;
+    margin: 0;
   }
 
   #addBtn {

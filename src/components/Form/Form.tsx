@@ -1,5 +1,6 @@
 import React from 'react';
 import uniqId from 'uniqid';
+import { useForm } from 'react-hook-form';
 
 import { CardModel } from '../../model/card-model';
 import { getWeatherByCity } from '../../services/weather-api';
@@ -9,17 +10,22 @@ import { setCardsToLS } from '../../services/localStorage';
 
 import './Form.scss';
 
+type Inputs = {
+  city: string;
+};
+
 const Form = () => {
-  const onSubmitForm = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const target = e.target as HTMLFormElement;
-    const input = target.querySelector('#city') as HTMLInputElement;
-    const cityName = input.value;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
 
+  const onSubmitForm = async ({ city }: Inputs) => {
     try {
-      if (cityName === '') return;
+      if (city === '') return;
 
-      const data = await getWeatherByCity(cityName, languageStore.lang);
+      const data = await getWeatherByCity(city, languageStore.lang);
       if (!data) return;
 
       const card: CardModel = {
@@ -38,19 +44,28 @@ const Form = () => {
         isCelsius: true,
       };
 
-      input.value = '';
-
       cardsStore.addCard(card);
       setCardsToLS(cardsStore.totalCards);
     } catch (err) {
-      input.value = '';
       console.log('Incorrect city name');
     }
   };
 
   return (
-    <form className="form" onSubmit={onSubmitForm}>
-      <input type="text" className="city-field" name="city" id="city" placeholder="City name..." />
+    <form className="form" onSubmit={handleSubmit(onSubmitForm)}>
+      <input
+        type="text"
+        className="city-field"
+        id="city"
+        placeholder="City name..."
+        {...register('city', {
+          pattern: {
+            value: /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Zа-яА-Я\u0080-\u024F]*$/,
+            message: 'Must be only letters',
+          },
+        })}
+      />
+      {errors.city && <p className="error">{errors.city.message}</p>}
       <button id="addBtn">Add</button>
     </form>
   );

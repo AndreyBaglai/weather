@@ -1,5 +1,5 @@
 export function convertToCelsius(temperature: number) {
-  return Math.floor(temperature * (9 / 5) + 32);
+  return Math.floor(temperature * (9 / 5) + 33);
 }
 
 export function convertToFahrenheit(temperature: number) {

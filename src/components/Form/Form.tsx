@@ -26,6 +26,7 @@ const Form = () => {
       if (city === '') return;
 
       const data = await getWeatherByCity(city, languageStore.lang);
+      
       if (!data) return;
 
       const card: CardModel = {
@@ -46,8 +47,8 @@ const Form = () => {
 
       cardsStore.addCard(card);
       setCardsToLS(cardsStore.totalCards);
-    } catch (err) {
-      console.log('Incorrect city name');
+    } catch (err: any) {
+      console.log(`Invalid city name ${err}`);
     }
   };
 

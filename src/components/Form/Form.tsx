@@ -1,5 +1,4 @@
 import React from 'react';
-import { observer } from 'mobx-react-lite';
 
 import { CardModel } from '../../model/card-model';
 import { getWeatherByCity } from '../../services/weather-api';
@@ -9,7 +8,7 @@ import { setCardsToLS } from '../../services/localStorage';
 
 import './Form.scss';
 
-const Form = observer(() => {
+const Form = () => {
   const onSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault();
     const target = e.target as HTMLFormElement;
@@ -54,6 +53,6 @@ const Form = observer(() => {
       <button id="addBtn">Add</button>
     </form>
   );
-});
+};
 
 export default Form;

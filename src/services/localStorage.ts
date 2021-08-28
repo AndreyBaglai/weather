@@ -17,7 +17,7 @@ export function removeAllCardsFromLS() {
   localStorage.removeItem(COLLECTION_CARDS);
 }
 
-export function removeCardFromLS(id: number) {
+export function removeCardFromLS(id: string) {
   const cards = getCardsFromLS();
   if (cards.length) {
     const updateCards = cards.filter((card: CardModel) => card.id !== id);
@@ -25,7 +25,7 @@ export function removeCardFromLS(id: number) {
   }
 }
 
-export function updateCardByIdInLS(card: CardModel, id: number) {
+export function updateCardByIdInLS(card: CardModel, id: string) {
   removeCardFromLS(id);
   const cards = getCardsFromLS();
   setCardsToLS([card, ...cards]);

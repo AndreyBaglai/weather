@@ -26,15 +26,15 @@ class Cards {
     });
   }
 
-  getCardById(id: number) {
+  getCardById(id: string) {
     return this.cards.find((card: CardModel) => card.id === id);
   }
 
-  removeCardById(id: number) {
+  removeCardById(id: string) {
     this.cards = this.cards.filter((card: CardModel) => card.id !== id);
   }
 
-  updateCardTemperature(newTemperature: number, id: number) {
+  updateCardTemperature(newTemperature: number, id: string) {
     this.cards = this.cards.map((card: CardModel) => {
       if (card.id === id) {
         card.temperature = newTemperature;
@@ -43,6 +43,10 @@ class Cards {
     });
   }
 
+  getAllNamesCity() {
+    return this.cards.map((card: CardModel) => card.city);
+  }
+  
   updateCards(cards: CardModel[]) {
     this.cards = [...cards];
   }

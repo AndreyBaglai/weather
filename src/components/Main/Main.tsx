@@ -14,7 +14,7 @@ const Main = observer(() => {
     const currentTarget = e.currentTarget as HTMLElement;
     const target = e.target as HTMLElement;
 
-    const id = Number(currentTarget.closest('.card')?.id);
+    const id = String(currentTarget.closest('.card')?.id);
     const currentCard = cardsStore.getCardById(id);
 
     if (currentCard) {
@@ -35,10 +35,12 @@ const Main = observer(() => {
 
   const onRemoveCard = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
-    const id = Number(target.closest('.card')?.id);
+    const id = target.closest('.card')?.id;
 
-    cardsStore.removeCardById(id);
-    removeCardFromLS(id);
+    if (id) {
+      cardsStore.removeCardById(id);
+      removeCardFromLS(id);
+    }
   };
 
   return (

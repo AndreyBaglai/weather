@@ -1,4 +1,5 @@
 import React from 'react';
+import uniqId from 'uniqid';
 
 import { CardModel } from '../../model/card-model';
 import { getWeatherByCity } from '../../services/weather-api';
@@ -22,7 +23,7 @@ const Form = () => {
       if (!data) return;
 
       const card: CardModel = {
-        id: Math.round(Date.now() + Math.random()),
+        id: uniqId(),
         city: data.name,
         time: data.dt,
         country: data.sys.country,

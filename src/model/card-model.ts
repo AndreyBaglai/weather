@@ -1,5 +1,5 @@
 export type CardModel = {
-  id: number;
+  id: string;
   humidity: number;
   pressure: number;
   wind_speed: number;

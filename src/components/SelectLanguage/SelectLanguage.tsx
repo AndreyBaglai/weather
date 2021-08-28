@@ -19,7 +19,7 @@ const SelectLanguage = observer(() => {
     const cityNames = cardsStore.getAllNamesCity();
     const preparedRequests = cityNames.map(
       (city: string) =>
-        new Promise((resolve, reject) => {
+        new Promise((resolve, _) => {
           resolve(getWeatherByCity(city, selectedLang));
         }),
     );

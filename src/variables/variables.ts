@@ -13,3 +13,4 @@ export const MONTHS = [
   'Dec',
 ];
 export const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+export const NOT_FOUND_CODE = 404;

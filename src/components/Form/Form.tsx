@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import uniqId from 'uniqid';
 import { useForm } from 'react-hook-form';
 
@@ -18,15 +18,22 @@ const Form = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitSuccessful },
   } = useForm<Inputs>();
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset({ city: '' });
+    }
+  }, [isSubmitSuccessful, reset]);
 
   const onSubmitForm = async ({ city }: Inputs) => {
     try {
       if (city === '') return;
 
       const data = await getWeatherByCity(city, languageStore.lang);
-      
+
       if (!data) return;
 
       const card: CardModel = {

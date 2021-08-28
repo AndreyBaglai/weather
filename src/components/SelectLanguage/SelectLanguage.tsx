@@ -9,7 +9,7 @@ import loaderStore from '../../store/loader';
 import { getWeatherByCity } from '../../services/weather-api';
 import { CardModel } from '../../model/card-model';
 
-import './SelectLanguage.scss'
+import './SelectLanguage.scss';
 
 const SelectLanguage = observer(() => {
   const onSelectLang = async (e: React.ChangeEvent) => {
@@ -52,7 +52,9 @@ const SelectLanguage = observer(() => {
     setCardsToLS(newCards);
     setLangToLS(selectedLang);
 
-    loaderStore.toggleLoader();
+    setTimeout(() => {
+      loaderStore.toggleLoader();
+    }, 1000);
   };
 
   return (

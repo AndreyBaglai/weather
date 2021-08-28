@@ -2,8 +2,10 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 
 import { CardModel } from '../../model/card-model';
+import Loader from '../Loader/Loader';
 import Card from '../Card/Card';
 import cardsStore from '../../store/cards';
+import loaderStore from '../../store/loader';
 import { removeCardFromLS, updateCardByIdInLS } from '../../services/localStorage';
 import { convertToCelsius, convertToFahrenheit } from '../../shared/convert-temperature';
 
@@ -45,14 +47,18 @@ const Main = observer(() => {
 
   return (
     <main className="main">
-      {cardsStore.totalCards.map((card: CardModel) => (
-        <Card
-          key={card.id}
-          onChangeTemperature={onChangeTemperature}
-          onRemoveCard={onRemoveCard}
-          info={card}
-        />
-      ))}
+      {loaderStore.getStatus ? (
+        <Loader />
+      ) : (
+        cardsStore.totalCards.map((card: CardModel) => (
+          <Card
+            key={card.id}
+            onChangeTemperature={onChangeTemperature}
+            onRemoveCard={onRemoveCard}
+            info={card}
+          />
+        ))
+      )}
     </main>
   );
 });

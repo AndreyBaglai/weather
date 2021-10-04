@@ -1,6 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 import uniqId from 'uniqid';
+import { useTranslation } from 'react-i18next';
 
 import { getLangFromLS, setCardsToLS, setLangToLS } from '../../services/localStorage';
 import languageStore from '../../stores/Language';
@@ -11,11 +12,22 @@ import { CardModel } from '../../types/card-model';
 
 import styles from './styles.module.scss';
 
+const langs: any = {
+  en: { nativeName: 'English' },
+  ru: { nativeName: 'Russian' },
+  uk: { nativeName: 'Ukraine' },
+  he: { nativeName: 'Hebrew' },
+};
+
 const SelectLanguage: React.FC = observer(() => {
+  const { t, i18n } = useTranslation(); 
+
   const onSelectLang = async (e: React.ChangeEvent) => {
     loaderStore.toggleLoader();
     const target = e.target as HTMLOptionElement;
     const selectedLang = target.value;
+    i18n.changeLanguage(selectedLang);
+    
     const cityNames = cardsStore.getAllNamesCity();
     const preparedRequests = cityNames.map(
       (city: string) =>
@@ -64,10 +76,11 @@ const SelectLanguage: React.FC = observer(() => {
       className={styles.selectLang}
       onChange={onSelectLang}
       defaultValue={getLangFromLS()}>
-      <option value="en">EN</option>
-      <option value="ru">RU</option>
-      <option value="uk">UA</option>
-      <option value="he">HE</option>
+      {Object.keys(langs).map((lang: any) => (
+        <option key={lang} value={lang}>
+          {lang.toUpperCase()}
+        </option>
+      ))}
     </select>
   );
 });

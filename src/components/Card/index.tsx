@@ -10,7 +10,7 @@ interface IProps {
   onChangeInCelsius: (event: React.MouseEvent) => void;
   onRemoveCard: (event: React.MouseEvent) => void;
   onChangeInFahrenheit: (event: React.MouseEvent) => void;
-  info: CardModel;
+  cardInfo: CardModel;
 };
 
 const formatTime = () => {
@@ -38,16 +38,17 @@ const formatTemperature = (temperature: number) => {
     : `-${roundedTemperature}`;
 };
 
-const Card: React.FC<IProps> = ({ onRemoveCard, info, onChangeInCelsius, onChangeInFahrenheit }) => {
+const Card: React.FC<IProps> = ({ onRemoveCard, cardInfo, onChangeInCelsius, onChangeInFahrenheit }) => {
   return (
-    <div className={styles.card} id={String(info.id)} style={{ backgroundColor: info.temperature < 0 ? '#F1F2FF' : '#fff1fe' }}>
+    <div className={styles.card} id={String(cardInfo.id)} style={{ backgroundColor: cardInfo.temperature < 0 ? '#F1F2FF' : '#fff1fe' }}>
       <button className={styles.removeCard} onClick={onRemoveCard}>
         X
       </button>
+
       <div className={styles.cardTop}>
         <div className={styles.countryInfo}>
           <div className={styles.country}>
-            {info.city}, {info.country}
+            {cardInfo.city}, {cardInfo.country}
           </div>
           <div className={styles.date}>
             {formatDate()} {formatTime()}
@@ -56,15 +57,15 @@ const Card: React.FC<IProps> = ({ onRemoveCard, info, onChangeInCelsius, onChang
         <div className={styles.weatherIcon}>
           <img
             className={styles.icon}
-            src={`https://openweathermap.org/img/wn/${info.icon}@2x.png`}
+            src={`https://openweathermap.org/img/wn/${cardInfo.icon}@2x.png`}
             alt="Icon"
           />
-          <p className={styles.textIcon}>{info.text_icon}</p>
+          <p className={styles.textIcon}>{cardInfo.text_icon}</p>
         </div>
       </div>
 
       <div className={styles.graphic}>
-        {info.temperature > 0 ? (
+        {cardInfo.temperature > 0 ? (
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path
               fill="#ff715b"
@@ -84,27 +85,27 @@ const Card: React.FC<IProps> = ({ onRemoveCard, info, onChangeInCelsius, onChang
       <div className={styles.cardBottom}>
         <div className={styles.temperatureWrapper}>
           <div className={styles.mainTemperature}>
-            <span className={styles.temperature}>{formatTemperature(info.temperature)}</span>
+            <span className={styles.temperature}>{formatTemperature(cardInfo.temperature)}</span>
             <span className={styles.metric}>
-              <span data-id={info.id} onClick={onChangeInCelsius} className={classNames(styles.celsius, { [styles.active]: info.isCelsius })}>&deg;C</span> |{' '}
-              <span data-id={info.id} onClick={onChangeInFahrenheit} className={classNames(styles.fahrenheit, { [styles.active]: !info.isCelsius })}>&deg;F</span>
+              <span data-id={cardInfo.id} onClick={onChangeInCelsius} className={classNames(styles.celsius, { [styles.active]: cardInfo.isCelsius })}>&deg;C</span> |{' '}
+              <span data-id={cardInfo.id} onClick={onChangeInFahrenheit} className={classNames(styles.fahrenheit, { [styles.active]: !cardInfo.isCelsius })}>&deg;F</span>
             </span>
           </div>
           <div className={styles.feels}>
             Feels like:
-            {Math.ceil(info.feels) > 0 ? `+${Math.ceil(info.feels)}` : `-${Math.ceil(info.feels)}`}
+            {Math.ceil(cardInfo.feels) > 0 ? `+${Math.ceil(cardInfo.feels)}` : `-${Math.ceil(cardInfo.feels)}`}
           </div>
         </div>
         <div className={styles.weatherInfo}>
-          <p>{info.description}</p>
+          <p>{cardInfo.description}</p>
           <p>
-            Wind: <span className={styles.value}>{info.wind_speed}m/s</span>
+            Wind: <span className={styles.value}>{cardInfo.wind_speed}m/s</span>
           </p>
           <p>
-            Humidity: <span className={styles.value}>{info.humidity}%</span>
+            Humidity: <span className={styles.value}>{cardInfo.humidity}%</span>
           </p>
           <p>
-            Pressure: <span className={styles.value}>{info.pressure}Pa</span>
+            Pressure: <span className={styles.value}>{cardInfo.pressure}Pa</span>
           </p>
         </div>
       </div>

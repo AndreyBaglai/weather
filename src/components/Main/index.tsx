@@ -71,7 +71,7 @@ const Main: React.FC = observer(() => {
             onChangeInCelsius={onChangeInCelsius}
             onChangeInFahrenheit={onChangeInFahrenheit}
             onRemoveCard={onRemoveCard}
-            info={card}
+            cardInfo={card}
           />
         ))
       )}

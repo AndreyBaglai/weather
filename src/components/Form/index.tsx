@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import uniqId from 'uniqid';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { useStore } from 'stores';
 import { CardModel } from '../../types/card-model';
@@ -16,6 +17,7 @@ interface IInputs {
 
 const Form: React.FC = () => {
   const [isNotFound, setIsNotFound] = useState(false);
+  const { t } = useTranslation(); 
 
   const {
     register,
@@ -82,7 +84,7 @@ const Form: React.FC = () => {
       {errors.city && <p className={styles.error}>{errors.city.message}</p>}
       {isNotFound && <p className={styles.error}>City not found</p>}
       <button className={styles.addBtn} id="addBtn">
-        Add
+        {t('buttons.add')}
       </button>
     </form>
   );

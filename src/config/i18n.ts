@@ -8,14 +8,18 @@ i18n
   // loads translations from your server
   // https://github.com/i18next/i18next-http-backend
   .use(Backend)
-  // init i18next
-  // for all options read: https://www.i18next.com/overview/configuration-options
+  // detect user language
   // learn more: https://github.com/i18next/i18next-browser-languageDetector
   .use(LanguageDetector)
-    // detect user language
   // pass the i18n instance to react-i18next.
   .use(initReactI18next)
+  // init i18next
+  // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
+    backend: {
+      // for all available options read the backend's repository readme file
+      loadPath: 'weather/locales/{{lng}}/{{ns}}.json'
+    },
     debug: true,
     fallbackLng: 'en',
     interpolation: {

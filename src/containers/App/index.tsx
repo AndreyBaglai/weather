@@ -27,7 +27,7 @@ const App = observer(() => {
   return (
     <div className={styles.container}>
       <Header />
-      {cardsStore.cards.length === 0 ? <p>Please, input city name</p> : <Main />}
+      {cardsStore.cards.length === 0 ? <h2 className={styles.text}>Please, input city name</h2> : <Main />}
     </div>
   );
 });

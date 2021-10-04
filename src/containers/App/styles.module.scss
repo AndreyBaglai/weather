@@ -1,4 +1,14 @@
 .container {
   max-width: 1920px;
   padding: 0 40px;
+
+  .text {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    padding: 0 10px;
+  }
 }

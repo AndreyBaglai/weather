@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import uniqId from 'uniqid';
 import { useForm } from 'react-hook-form';
 
@@ -12,9 +12,11 @@ import styles from './styles.module.scss';
 
 interface IInputs {
   city: string;
-};
+}
 
 const Form: React.FC = () => {
+  const [isNotFound, setIsNotFound] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -35,7 +37,10 @@ const Form: React.FC = () => {
 
       const data = await getWeatherByCity(city, languageStore.lang);
 
-      if (!data) return;
+      if (!data) {
+        setIsNotFound(true);
+        setTimeout(() => setIsNotFound(false), 2000);
+      }
 
       const card: CardModel = {
         id: uniqId(),
@@ -75,7 +80,10 @@ const Form: React.FC = () => {
         })}
       />
       {errors.city && <p className={styles.error}>{errors.city.message}</p>}
-      <button className={styles.addBtn} id="addBtn">Add</button>
+      {isNotFound && <p className={styles.error}>City not found</p>}
+      <button className={styles.addBtn} id="addBtn">
+        Add
+      </button>
     </form>
   );
 };

@@ -1,7 +1,7 @@
-export function convertToCelsius(temperature: number) {
-  return Math.floor(temperature * (9 / 5) + 33);
-}
+export const convertToCelsius = (temperature: number) => {
+  return Math.floor(temperature * (9 / 5) + 32);
+};
 
-export function convertToFahrenheit(temperature: number) {
+export const convertToFahrenheit = (temperature: number) => {
   return Math.ceil((temperature - 32) * (5 / 9));
-}
+};

@@ -1,0 +1,161 @@
+[33mcommit cfd04876c8e890be1496b623b8f4b94da6e9d822[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: AndreyBaglai <andreybaglai@gmail.com>
+Date:   Mon Oct 4 14:19:13 2021 +0300
+
+    refactor: change components
+
+[33mcommit ff7a967a400b2f58414a12c8cae2e15d9cd39712[m[33m ([m[1;31mexample/master[m[33m)[m
+Author: AndreyBaglai <andreybaglai@gmail.com>
+Date:   Sat Aug 28 16:21:51 2021 +0300
+
+    refactor: get responce status code
+
+[33mcommit c542487ba2a36826b84bab006c6754e79c8cc0f7[m
+Author: AndreyBaglai <andreybaglai@gmail.com>
+Date:   Sat Aug 28 16:05:51 2021 +0300
+
+    feat: add reset form after submit
+
+[33mcommit 6b5dd87a79fc1ba0037bf1bd6481d3a9c82c5a31[m
+Author: AndreyBaglai <andreybaglai@gmail.com>
+Date:   Sat Aug 28 15:23:53 2021 +0300
+
+    fix: cards position in main section
+
+[33mcommit 5c792209d697b4d9a3a2462142f3dc934b87b084[m
+Author: AndreyBaglai <andreybaglai@gmail.com>
+Date:   Sat Aug 28 14:33:27 2021 +0300
+
+    refactor: add form validation wit react-hook-form
+
+[33mcommit 84ee35e329cb9c834435340c5cea34ddc186a529[m
+Author: AndreyBaglai <andreybaglai@gmail.com>
+Date:   Sat Aug 28 12:21:58 2021 +0300
+
+    feat: add loader
+
+[33mcommit 8a4a144cba7b49aea54b0c5b0a6ebb743bbc6968[m
+Author: AndreyBaglai <andreybaglai@gmail.com>
+Date:   Sat Aug 28 12:08:05 2021 +0300
+
+    feat: add dynamic load card when change language
+
+[33mcommit d5d925bc7174c8fc88077b9392d189a25f754490[m
+Author: AndreyBaglai <andreybaglai@gmail.com>
+Date:   Sat Aug 28 10:01:10 2021 +0300
+
+    refactor: delete observer wrapper
+
+[33mcommit 67b7368fbaf5d3d0c11030a3aaa212855aecb294[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: AndreyBaglai <andreybaglai@gmail.com>
+Date:   Thu Aug 26 16:50:52 2021 +0300
+
+    refactor: use method closest for serach parent element
+
+[33mcommit 15a0bdac4516502cb5d7b79a2fe29f5352baf742[m
+Author: AndreyBaglai <andreybaglai@gmail.com>
+Date:   Thu Aug 26 14:44:52 2021 +0300
+
+    refactor: convert temperature
+
+[33mcommit a6ed6ef7601a6e3d7e4026995a09a2d1951b59b1[m
+Author: AndreyBaglai <andreybaglai@gmail.com>
+Date:   Thu Aug 26 14:21:26 2021 +0300
+
+    fix: delete repeat cards
+
+[33mcommit 4bf4455d11e178ca50ba0b005eda7302b0302de6[m
+Author: AndreyBaglai <andreybaglai@gmail.com>
+Date:   Thu Aug 26 14:04:54 2021 +0300
+
+    refactor: toggle temperature on card
+
+[33mcommit 8d822d85b12aa0c335c7e1b4dd1d9257404b0d9e[m
+Author: AndreyBaglai <andreybaglai@gmail.com>
+Date:   Thu Aug 26 11:33:06 2021 +0300
+
+    feat: add remove card
+
+[33mcommit 07eac4e5f416bbc0e785afdb563a217ac77e67c6[m
+Author: AndreyBaglai <andreybaglai@gmail.com>
+Date:   Thu Aug 26 11:01:14 2021 +0300
+
+    feat: add store for language, cardes with mobx and mobx-react-lite
+
+[33mcommit 37d54a9136ce297eb5001bf49823ef7767d38cf4[m
+Author: Andrey Baglai <andreybaglai@gmail.com>
+Date:   Fri Aug 6 16:00:04 2021 +0300
+
+    deploy: deplou v1
+
+[33mcommit 5d106e6a952985d22740f05b72548b08298078db[m
+Author: Andrey Baglai <andreybaglai@gmail.com>
+Date:   Fri Aug 6 15:50:08 2021 +0300
+
+    feat: save language to localStorage
+
+[33mcommit d96d98b1b6f879320e9f60369075139fb54fb619[m
+Author: Andrey Baglai <andreybaglai@gmail.com>
+Date:   Fri Aug 6 13:51:36 2021 +0300
+
+    feat: save cards to localStorage
+
+[33mcommit e090cc166eafa6c8ebc68557cef044ab089bc58e[m
+Author: Andrey Baglai <andreybaglai@gmail.com>
+Date:   Fri Aug 6 13:28:15 2021 +0300
+
+    fix: card info
+
+[33mcommit 72d93bac508b100725ccf03ac96c7908a80033f1[m
+Author: Andrey Baglai <andreybaglai@gmail.com>
+Date:   Fri Aug 6 11:57:37 2021 +0300
+
+    feat: display card weather
+
+[33mcommit f3cf0112c7fbcc847c110b11dd8b92c7db0bb33a[m
+Author: Andrey Baglai <andreybaglai@gmail.com>
+Date:   Fri Aug 6 11:21:03 2021 +0300
+
+    feat: get weather by city name
+
+[33mcommit 0199f561ec23573df5467e9e8543233585291499[m
+Author: Andrey Baglai <andreybaglai@gmail.com>
+Date:   Fri Aug 6 10:29:45 2021 +0300
+
+    feat: add change temperature
+
+[33mcommit 104716ab7a7aa9e470e795a172a370bdbdaf20dd[m
+Author: Andrey Baglai <andreybaglai@gmail.com>
+Date:   Thu Aug 5 23:23:27 2021 +0300
+
+    feat: add Main and Card component
+
+[33mcommit 4b26260f59a04f6bdd2424495bf887e1c1ea1f68[m
+Author: Andrey Baglai <andreybaglai@gmail.com>
+Date:   Thu Aug 5 23:11:33 2021 +0300
+
+    feat: add SelectLanguage and main component
+
+[33mcommit 3969ee962ff3d416d816c743ff1c460b45c4e669[m
+Author: Andrey Baglai <andreybaglai@gmail.com>
+Date:   Thu Aug 5 23:06:10 2021 +0300
+
+    feat: add header and form component
+
+[33mcommit 6037145a9670c8df3b974047da3320c6aeafbe61[m
+Author: Andrey Baglai <andreybaglai@gmail.com>
+Date:   Thu Aug 5 15:08:39 2021 +0300
+
+    feat: add basic markup
+
+[33mcommit 17adfe371dfd543e56a9f36004af74f215ac7035[m
+Author: Andrey Baglai <andreybaglai@gmail.com>
+Date:   Thu Aug 5 12:41:06 2021 +0300
+
+    init: add basic structure files
+
+[33mcommit 75a253371a4f3c8102997332ace88695a5449327[m
+Author: Andrey Baglai <andreybaglai@gmail.com>
+Date:   Thu Aug 5 12:28:48 2021 +0300
+
+    Initialize project using Create React App

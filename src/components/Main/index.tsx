@@ -16,26 +16,37 @@ import styles from './styles.module.scss';
 const Main: React.FC = observer(() => {
   const { loaderStore, cardsStore } = useStore();
 
-  const onChangeTemperature = ({ currentTarget, target }: React.MouseEvent) => {
-    // const currentTarget = event.currentTarget as HTMLElement;
-    const targetElem = target as HTMLElement;
+  const onChangeInCelsius = ({ currentTarget }: React.MouseEvent) => {
+    const targetElem = currentTarget as HTMLElement;
+    const id = targetElem.dataset.id;
 
-    const id = String(currentTarget.closest('.card')?.id);
-    const currentCard = cardsStore.getCardById(id);
+    if (id) {
+      const currentCard: CardModel | undefined = cardsStore.getCardById(id);
 
-    if (currentCard) {
-      if (currentCard.isCelsius && targetElem.classList.contains('fahrenheit')) {
-        currentCard.isCelsius = false;
-        currentCard.temperature = convertToCelsius(currentCard.temperature);
-      }
-
-      if (!currentCard.isCelsius && targetElem.classList.contains('celsius')) {
+      if (currentCard && !currentCard.isCelsius) {
         currentCard.isCelsius = true;
         currentCard.temperature = convertToFahrenheit(currentCard.temperature);
-      }
 
-      cardsStore.updateCardTemperature(currentCard.temperature, id);
-      updateCardByIdInLS(currentCard, id);
+        cardsStore.updateCardTemperature(currentCard.temperature, id);
+        updateCardByIdInLS(currentCard, id);
+      }
+    }
+  };
+
+  const onChangeInFahrenheit = ({ currentTarget }: React.MouseEvent) => {
+    const targetElem = currentTarget as HTMLElement;
+    const id = targetElem.dataset.id;
+
+    if (id) {
+      const currentCard: CardModel | undefined = cardsStore.getCardById(id);
+
+      if (currentCard && currentCard.isCelsius) {
+        currentCard.isCelsius = false;
+        currentCard.temperature = convertToCelsius(currentCard.temperature);
+
+        cardsStore.updateCardTemperature(currentCard.temperature, id);
+        updateCardByIdInLS(currentCard, id);
+      }
     }
   };
 
@@ -57,7 +68,8 @@ const Main: React.FC = observer(() => {
         cardsStore.cards.map((card: CardModel) => (
           <Card
             key={card.id}
-            onChangeTemperature={onChangeTemperature}
+            onChangeInCelsius={onChangeInCelsius}
+            onChangeInFahrenheit={onChangeInFahrenheit}
             onRemoveCard={onRemoveCard}
             info={card}
           />

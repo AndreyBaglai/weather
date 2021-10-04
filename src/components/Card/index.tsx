@@ -7,39 +7,40 @@ import { DAYS, MONTHS } from 'utils/const';
 import styles from './styles.module.scss';
 
 interface IProps {
-  onChangeTemperature: (e: React.MouseEvent) => void;
-  onRemoveCard: (e: React.MouseEvent) => void;
+  onChangeInCelsius: (event: React.MouseEvent) => void;
+  onRemoveCard: (event: React.MouseEvent) => void;
+  onChangeInFahrenheit: (event: React.MouseEvent) => void;
   info: CardModel;
 };
 
-const Card: React.FC<IProps> = ({ onChangeTemperature, onRemoveCard, info }) => {
-  const formatTime = () => {
-    const date = new Date();
-    const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
-    const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
-    return `${hours}:${minutes}`;
-  };
+const formatTime = () => {
+  const date = new Date();
+  const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
+  const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
+  return `${hours}:${minutes}`;
+};
 
-  const formatDate = () => {
-    const time = new Date();
-    const month = time.getMonth();
-    const day = time.getDay();
-    const date = time.getDate();
+const formatDate = () => {
+  const time = new Date();
+  const month = time.getMonth();
+  const day = time.getDay();
+  const date = time.getDate();
 
-    return `${DAYS[day]}, ${date} ${MONTHS[month]},`;
-  };
+  return `${DAYS[day]}, ${date} ${MONTHS[month]},`;
+};
 
-  const formatTemperature = (temperature: number) => {
-    const roundedTemperature = Math.ceil(temperature);
-    if (roundedTemperature === 0) return '0';
+const formatTemperature = (temperature: number) => {
+  const roundedTemperature = Math.ceil(temperature);
+  if (roundedTemperature === 0) return '0';
 
-    return roundedTemperature > 0
-      ? `+${roundedTemperature}`
-      : `-${roundedTemperature}`;
-  };
+  return roundedTemperature > 0
+    ? `+${roundedTemperature}`
+    : `-${roundedTemperature}`;
+};
 
+const Card: React.FC<IProps> = ({ onRemoveCard, info, onChangeInCelsius, onChangeInFahrenheit }) => {
   return (
-    <div className={styles.card} id={String(info.id)}>
+    <div className={styles.card} id={String(info.id)} style={{ backgroundColor: info.temperature < 0 ? '#F1F2FF' : '#fff1fe' }}>
       <button className={styles.removeCard} onClick={onRemoveCard}>
         X
       </button>
@@ -81,12 +82,12 @@ const Card: React.FC<IProps> = ({ onChangeTemperature, onRemoveCard, info }) => 
       </div>
 
       <div className={styles.cardBottom}>
-        <div className={styles.temperatureWrapper} onClick={onChangeTemperature}>
+        <div className={styles.temperatureWrapper}>
           <div className={styles.mainTemperature}>
             <span className={styles.temperature}>{formatTemperature(info.temperature)}</span>
             <span className={styles.metric}>
-              <span className={classNames(styles.celsius, { [styles.active]: info.isCelsius })}>&deg;C</span> |{' '}
-              <span className={classNames(styles.fahrenheit, { [styles.active]: !info.isCelsius })}>&deg;F</span>
+              <span data-id={info.id} onClick={onChangeInCelsius} className={classNames(styles.celsius, { [styles.active]: info.isCelsius })}>&deg;C</span> |{' '}
+              <span data-id={info.id} onClick={onChangeInFahrenheit} className={classNames(styles.fahrenheit, { [styles.active]: !info.isCelsius })}>&deg;F</span>
             </span>
           </div>
           <div className={styles.feels}>

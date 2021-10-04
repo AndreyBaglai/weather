@@ -3,15 +3,15 @@ import { observer } from 'mobx-react-lite';
 import uniqId from 'uniqid';
 
 import { getLangFromLS, setCardsToLS, setLangToLS } from '../../services/localStorage';
-import languageStore from '../../store/language';
-import cardsStore from '../../store/cards';
-import loaderStore from '../../store/loader';
+import languageStore from '../../stores/Language';
+import cardsStore from '../../stores/Cards';
+import loaderStore from '../../stores/Loader';
 import { getWeatherByCity } from '../../services/weather-api';
-import { CardModel } from '../../model/card-model';
+import { CardModel } from '../../types/card-model';
 
-import './SelectLanguage.scss';
+import styles from './styles.module.scss';
 
-const SelectLanguage = observer(() => {
+const SelectLanguage: React.FC = observer(() => {
   const onSelectLang = async (e: React.ChangeEvent) => {
     loaderStore.toggleLoader();
     const target = e.target as HTMLOptionElement;
@@ -61,12 +61,13 @@ const SelectLanguage = observer(() => {
     <select
       name="language"
       id="lang"
-      className="select-lang"
+      className={styles.selectLang}
       onChange={onSelectLang}
       defaultValue={getLangFromLS()}>
       <option value="en">EN</option>
       <option value="ru">RU</option>
       <option value="uk">UA</option>
+      <option value="he">HE</option>
     </select>
   );
 });

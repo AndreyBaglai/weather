@@ -1,4 +1,4 @@
-import { CardModel } from "../model/card-model";
+import { CardModel } from "../types/card-model";
 
 const COLLECTION_CARDS = 'cards';
 const CURRENT_LANG = 'lang';

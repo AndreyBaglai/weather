@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 
-import Header from './components/Header/Header';
-import Main from './components/Main/Main';
-import { getCardsFromLS, getLangFromLS, setLangToLS } from './services/localStorage';
+import Header from 'components/Header';
+import Main from 'components/Main';
 
-import languageStore from './store/language';
-import cardsStore from './store/cards';
+import { useStore } from 'stores';
 
-import './App.scss';
+import { getCardsFromLS, getLangFromLS, setLangToLS } from '../../services/localStorage';
+
+import styles from './styles.module.scss';
 
 const App = observer(() => {
+  const { cardsStore, languageStore } = useStore();
+  
   useEffect(() => {
     const currentLang = getLangFromLS();
     const currentCards = getCardsFromLS();
@@ -23,9 +25,9 @@ const App = observer(() => {
   }, []);
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <Header />
-      {cardsStore.totalCards.length === 0 ? <p>Please, input city name</p> : <Main />}
+      {cardsStore.cards.length === 0 ? <p>Please, input city name</p> : <Main />}
     </div>
   );
 });

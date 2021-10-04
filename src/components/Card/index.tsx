@@ -1,16 +1,18 @@
 import React from 'react';
-import { CardModel } from '../../model/card-model';
-import { DAYS, MONTHS } from '../../variables/variables';
+import classNames from 'classnames';
 
-import './Card.scss';
+import { CardModel } from 'types/card-model';
+import { DAYS, MONTHS } from 'utils/const';
 
-type CardPropsType = {
+import styles from './styles.module.scss';
+
+interface IProps {
   onChangeTemperature: (e: React.MouseEvent) => void;
   onRemoveCard: (e: React.MouseEvent) => void;
   info: CardModel;
 };
 
-export default function Card({ onChangeTemperature, onRemoveCard, info }: CardPropsType) {
+const Card: React.FC<IProps> = ({ onChangeTemperature, onRemoveCard, info }) => {
   const formatTime = () => {
     const date = new Date();
     const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
@@ -37,30 +39,30 @@ export default function Card({ onChangeTemperature, onRemoveCard, info }: CardPr
   };
 
   return (
-    <div className="card" id={String(info.id)}>
-      <button className="remove-card" onClick={onRemoveCard}>
+    <div className={styles.card} id={String(info.id)}>
+      <button className={styles.removeCard} onClick={onRemoveCard}>
         X
       </button>
-      <div className="card-top">
-        <div className="country-info">
-          <div className="country">
+      <div className={styles.cardTop}>
+        <div className={styles.countryInfo}>
+          <div className={styles.country}>
             {info.city}, {info.country}
           </div>
-          <div className="date">
+          <div className={styles.date}>
             {formatDate()} {formatTime()}
           </div>
         </div>
-        <div className="weather-icon">
+        <div className={styles.weatherIcon}>
           <img
-            className="icon"
+            className={styles.icon}
             src={`https://openweathermap.org/img/wn/${info.icon}@2x.png`}
             alt="Icon"
           />
-          <p className="text-icon">{info.text_icon}</p>
+          <p className={styles.textIcon}>{info.text_icon}</p>
         </div>
       </div>
 
-      <div className="graphic">
+      <div className={styles.graphic}>
         {info.temperature > 0 ? (
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path
@@ -78,33 +80,35 @@ export default function Card({ onChangeTemperature, onRemoveCard, info }: CardPr
         )}
       </div>
 
-      <div className="card-bottom">
-        <div className="temperature-wrapper" onClick={onChangeTemperature}>
-          <div className="main-temperature">
-            <span className="temperature">{formatTemperature(info.temperature)}</span>
-            <span className="metric">
-              <span className={`celsius ${info.isCelsius ? 'active' : ''}`}>&deg;C</span> |{' '}
-              <span className={`fahrenheit ${!info.isCelsius ? 'active' : ''}`}>&deg;F</span>
+      <div className={styles.cardBottom}>
+        <div className={styles.temperatureWrapper} onClick={onChangeTemperature}>
+          <div className={styles.mainTemperature}>
+            <span className={styles.temperature}>{formatTemperature(info.temperature)}</span>
+            <span className={styles.metric}>
+              <span className={classNames(styles.celsius, { [styles.active]: info.isCelsius })}>&deg;C</span> |{' '}
+              <span className={classNames(styles.fahrenheit, { [styles.active]: !info.isCelsius })}>&deg;F</span>
             </span>
           </div>
-          <div className="feels">
-            Feels like:{' '}
+          <div className={styles.feels}>
+            Feels like:
             {Math.ceil(info.feels) > 0 ? `+${Math.ceil(info.feels)}` : `-${Math.ceil(info.feels)}`}
           </div>
         </div>
-        <div className="weather-info">
+        <div className={styles.weatherInfo}>
           <p>{info.description}</p>
           <p>
-            Wind: <span className="value">{info.wind_speed}m/s</span>
+            Wind: <span className={styles.value}>{info.wind_speed}m/s</span>
           </p>
           <p>
-            Humidity: <span className="value">{info.humidity}%</span>
+            Humidity: <span className={styles.value}>{info.humidity}%</span>
           </p>
           <p>
-            Pressure: <span className="value">{info.pressure}Pa</span>
+            Pressure: <span className={styles.value}>{info.pressure}Pa</span>
           </p>
         </div>
       </div>
     </div>
   );
 }
+
+export default Card;

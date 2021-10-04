@@ -1,22 +1,20 @@
-import { makeAutoObservable } from 'mobx';
-import { CardModel } from '../model/card-model';
+import { action, makeObservable, observable } from 'mobx';
+import { CardModel } from '../types/card-model';
 
-class Cards {
-  cards: CardModel[] = [];
-
+class Store {
   constructor() {
-    makeAutoObservable(this);
+    makeObservable(this);
   }
 
-  get totalCards() {
-    return this.cards;
-  }
+  @observable cards: CardModel[] = [];
 
+  @action
   addCard(card: CardModel) {
     if (this.isRepeatCard(card)) return;
     this.cards.unshift(card);
   }
 
+  @action
   isRepeatCard(card: CardModel) {
     return this.cards.some((item: CardModel) => {
       return (
@@ -26,14 +24,17 @@ class Cards {
     });
   }
 
+  @action
   getCardById(id: string) {
     return this.cards.find((card: CardModel) => card.id === id);
   }
 
+  @action
   removeCardById(id: string) {
     this.cards = this.cards.filter((card: CardModel) => card.id !== id);
   }
 
+  @action
   updateCardTemperature(newTemperature: number, id: string) {
     this.cards = this.cards.map((card: CardModel) => {
       if (card.id === id) {
@@ -43,17 +44,20 @@ class Cards {
     });
   }
 
+  @action
   getAllNamesCity() {
     return this.cards.map((card: CardModel) => card.city);
   }
   
+  @action
   updateCards(cards: CardModel[]) {
     this.cards = [...cards];
   }
 
+  @action
   removeAllCards() {
     this.cards = [];
   }
 }
 
-export default new Cards();
+export default new Store();

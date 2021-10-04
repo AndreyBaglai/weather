@@ -1,10 +1,7 @@
-import { NOT_FOUND_CODE } from "../variables/variables";
+import { NOT_FOUND_CODE } from "../utils/const";
 
-const BASE_URL = 'https://api.openweathermap.org/data/2.5/';
-const API_KEY = '2904218e66790986ea8f1701ca13b7b5';
-
-export function getWeatherByCity(city: string, lang = 'en') {
-  return fetch(`${BASE_URL}weather?q=${city}&units=metric&lang=${lang}&appid=${API_KEY}`)
+export const getWeatherByCity = (city: string, lang = 'en') => {
+  return fetch(`${process.env.REACT_APP_WEATHER_URL}weather?q=${city}&units=metric&lang=${lang}&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
     .then((res: Response) => {
       if (res.status === NOT_FOUND_CODE) return;
       return res.json();

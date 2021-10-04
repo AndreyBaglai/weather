@@ -2,25 +2,26 @@ import React, { useEffect } from 'react';
 import uniqId from 'uniqid';
 import { useForm } from 'react-hook-form';
 
-import { CardModel } from '../../model/card-model';
+import { useStore } from 'stores';
+import { CardModel } from '../../types/card-model';
+
 import { getWeatherByCity } from '../../services/weather-api';
-import languageStore from '../../store/language';
-import cardsStore from '../../store/cards';
 import { setCardsToLS } from '../../services/localStorage';
 
-import './Form.scss';
+import styles from './styles.module.scss';
 
-type Inputs = {
+interface IInputs {
   city: string;
 };
 
-const Form = () => {
+const Form: React.FC = () => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitSuccessful },
-  } = useForm<Inputs>();
+  } = useForm<IInputs>();
+  const { cardsStore, languageStore } = useStore();
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -28,7 +29,7 @@ const Form = () => {
     }
   }, [isSubmitSuccessful, reset]);
 
-  const onSubmitForm = async ({ city }: Inputs) => {
+  const onSubmitForm = async ({ city }: IInputs) => {
     try {
       if (city === '') return;
 
@@ -53,17 +54,17 @@ const Form = () => {
       };
 
       cardsStore.addCard(card);
-      setCardsToLS(cardsStore.totalCards);
+      setCardsToLS(cardsStore.cards);
     } catch (err: any) {
       console.log(`Invalid city name ${err}`);
     }
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit(onSubmitForm)}>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmitForm)}>
       <input
         type="text"
-        className="city-field"
+        className={styles.cityField}
         id="city"
         placeholder="City name..."
         {...register('city', {
@@ -73,8 +74,8 @@ const Form = () => {
           },
         })}
       />
-      {errors.city && <p className="error">{errors.city.message}</p>}
-      <button id="addBtn">Add</button>
+      {errors.city && <p className={styles.error}>{errors.city.message}</p>}
+      <button className={styles.addBtn} id="addBtn">Add</button>
     </form>
   );
 };

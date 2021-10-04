@@ -11,7 +11,7 @@
   justify-content: space-between;
   position: relative;
 
-  .remove-card {
+  .removeCard {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -22,7 +22,7 @@
     font-size: 20px;
   }
 
-  .country-info {
+  .countryInfo {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -37,21 +37,21 @@
     font-size: 18px;
   }
 
-  &-top {
+  &Top {
     margin-top: 10px;
   }
 
-  &-top,
-  &-bottom {
+  &Top,
+  &Bottom {
     display: flex;
     justify-content: space-between;
   }
 
-  &-bottom {
+  &Bottom {
     align-items: flex-end;
   }
 
-  .weather-icon {
+  .weatherIcon {
     color: #c5c5c5;
     display: flex;
     justify-content: space-between;
@@ -70,7 +70,7 @@
     bottom: 30px;
   }
 
-  .temperature-wrapper {
+  .temperatureWrapper {
     position: relative;
     margin-bottom: 20px;
     display: flex;
@@ -97,13 +97,14 @@
         cursor: pointer;
       }
 
-      .celsius.active, .fahrenheit.active {
+      .celsius.active,
+      .fahrenheit.active {
         color: rgb(15, 196, 15);
       }
     }
   }
 
-  .weather-info {
+  .weatherInfo {
     text-align: right;
     p {
       margin: 4px 0;

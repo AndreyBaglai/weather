@@ -20,7 +20,7 @@ const langs: any = {
 };
 
 const SelectLanguage: React.FC = observer(() => {
-  const { t, i18n } = useTranslation(); 
+  const { i18n } = useTranslation(); 
 
   const onSelectLang = async (e: React.ChangeEvent) => {
     loaderStore.toggleLoader();

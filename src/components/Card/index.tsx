@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { CardModel } from 'types/card-model';
 import { DAYS, MONTHS } from 'utils/const';
@@ -11,7 +12,7 @@ interface IProps {
   onRemoveCard: (event: React.MouseEvent) => void;
   onChangeInFahrenheit: (event: React.MouseEvent) => void;
   cardInfo: CardModel;
-};
+}
 
 const formatTime = () => {
   const date = new Date();
@@ -29,18 +30,30 @@ const formatDate = () => {
   return `${DAYS[day]}, ${date} ${MONTHS[month]},`;
 };
 
-const formatTemperature = (temperature: number) => {
+const formatTemperature = (temperature: number, isHebrew: string) => {
   const roundedTemperature = Math.ceil(temperature);
   if (roundedTemperature === 0) return '0';
 
-  return roundedTemperature > 0
-    ? `+${roundedTemperature}`
-    : `-${roundedTemperature}`;
+  if (isHebrew === 'he') {
+    return roundedTemperature > 0 ? `${roundedTemperature}+` : `${Math.abs(roundedTemperature)}-`;
+  } else {
+    return roundedTemperature > 0 ? `+${roundedTemperature}` : `-${roundedTemperature}`;
+  }
 };
 
-const Card: React.FC<IProps> = ({ onRemoveCard, cardInfo, onChangeInCelsius, onChangeInFahrenheit }) => {
+const Card: React.FC<IProps> = ({
+  onRemoveCard,
+  cardInfo,
+  onChangeInCelsius,
+  onChangeInFahrenheit,
+}) => {
+  const { t, i18n } = useTranslation();
+  
   return (
-    <div className={styles.card} id={String(cardInfo.id)} style={{ backgroundColor: cardInfo.temperature < 0 ? '#F1F2FF' : '#fff1fe' }}>
+    <div
+      className={styles.card}
+      id={String(cardInfo.id)}
+      style={{ backgroundColor: cardInfo.temperature < 0 ? '#F1F2FF' : '#fff1fe' }}>
       <button className={styles.removeCard} onClick={onRemoveCard}>
         X
       </button>
@@ -85,32 +98,52 @@ const Card: React.FC<IProps> = ({ onRemoveCard, cardInfo, onChangeInCelsius, onC
       <div className={styles.cardBottom}>
         <div className={styles.temperatureWrapper}>
           <div className={styles.mainTemperature}>
-            <span className={styles.temperature}>{formatTemperature(cardInfo.temperature)}</span>
+            <span className={styles.temperature}>
+              {formatTemperature(cardInfo.temperature, i18n.language)}
+            </span>
             <span className={styles.metric}>
-              <span data-id={cardInfo.id} onClick={onChangeInCelsius} className={classNames(styles.celsius, { [styles.active]: cardInfo.isCelsius })}>&deg;C</span> |{' '}
-              <span data-id={cardInfo.id} onClick={onChangeInFahrenheit} className={classNames(styles.fahrenheit, { [styles.active]: !cardInfo.isCelsius })}>&deg;F</span>
+              <span
+                data-id={cardInfo.id}
+                onClick={onChangeInCelsius}
+                className={classNames(styles.celsius, { [styles.active]: cardInfo.isCelsius })}>
+                &deg;C
+              </span>{' '}
+              |{' '}
+              <span
+                data-id={cardInfo.id}
+                onClick={onChangeInFahrenheit}
+                className={classNames(styles.fahrenheit, { [styles.active]: !cardInfo.isCelsius })}>
+                &deg;F
+              </span>
             </span>
           </div>
           <div className={styles.feels}>
-            Feels like:
-            {Math.ceil(cardInfo.feels) > 0 ? `+${Math.ceil(cardInfo.feels)}` : `-${Math.ceil(cardInfo.feels)}`}
+            {t('weather.feels', {
+              value: formatTemperature(Math.ceil(cardInfo.feels), i18n.language),
+            })}
           </div>
         </div>
         <div className={styles.weatherInfo}>
           <p>{cardInfo.description}</p>
           <p>
-            Wind: <span className={styles.value}>{cardInfo.wind_speed}m/s</span>
+            <Trans i18nKey="weather.wind" values={{ value: cardInfo.wind_speed }}>
+              Wind <span className={styles.value}>m/s</span>
+            </Trans>
           </p>
           <p>
-            Humidity: <span className={styles.value}>{cardInfo.humidity}%</span>
+            <Trans i18nKey="weather.humidity" values={{ value: cardInfo.humidity }}>
+              Humidity <span className={styles.value}>%</span>
+            </Trans>
           </p>
           <p>
-            Pressure: <span className={styles.value}>{cardInfo.pressure}Pa</span>
+            <Trans i18nKey="weather.pressure" values={{ value: cardInfo.pressure }}>
+              Pressure <span className={styles.value}>Pa</span>
+            </Trans>
           </p>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Card;

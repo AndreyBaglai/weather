@@ -17,7 +17,7 @@ interface IInputs {
 
 const Form: React.FC = () => {
   const [isNotFound, setIsNotFound] = useState(false);
-  const { t } = useTranslation(); 
+  const { t } = useTranslation();
 
   const {
     register,
@@ -37,26 +37,26 @@ const Form: React.FC = () => {
     try {
       if (city === '') return;
 
-      const data = await getWeatherByCity(city, languageStore.lang);
-
-      if (!data) {
+      const response = await getWeatherByCity(city, languageStore.lang);
+    
+      if (!response) {
         setIsNotFound(true);
         setTimeout(() => setIsNotFound(false), 2000);
       }
 
       const card: CardModel = {
         id: uniqId(),
-        city: data.name,
-        time: data.dt,
-        country: data.sys.country,
-        temperature: data.main.temp,
-        humidity: data.main.humidity,
-        pressure: data.main.pressure,
-        feels: data.main.feels_like,
-        icon: data.weather[0].icon,
-        text_icon: data.weather[0].main,
-        description: data.weather[0].description,
-        wind_speed: data.wind.speed,
+        city: response.name,
+        time: response.dt,
+        country: response.sys.country,
+        temperature: response.main.temp,
+        humidity: response.main.humidity,
+        pressure: response.main.pressure,
+        feels: response.main.feels_like,
+        icon: response.weather[0].icon,
+        text_icon: response.weather[0].main,
+        description: response.weather[0].description,
+        wind_speed: response.wind.speed,
         isCelsius: true,
       };
 
@@ -73,7 +73,7 @@ const Form: React.FC = () => {
         type="text"
         className={styles.cityField}
         id="city"
-        placeholder="City name..."
+        placeholder={t('placeholder')}
         {...register('city', {
           pattern: {
             value: /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Zа-яА-Я\u0080-\u024F]*$/,

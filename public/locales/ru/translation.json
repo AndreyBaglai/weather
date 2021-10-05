@@ -2,5 +2,14 @@
   "buttons": {
     "add": "Добавить",
     "remove": "Удалить все"
+  },
+  "empty": "Please, input city name",
+  "placeholder": "Имя города...",
+  "loader": "Загрузка...",
+  "weather": {
+    "feels": "Ощущается как: {{value}}",
+    "wind": "Ветер <1>{{value}}м/с</1>",
+    "humidity": "Влажность <1>{{value}}%</1>",
+    "pressure": "Давление <1>{{value}}Pa</1>"
   }
 }

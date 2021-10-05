@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
+import { useTranslation } from 'react-i18next';
 
 import Header from 'components/Header';
 import Main from 'components/Main';
@@ -12,6 +13,7 @@ import styles from './styles.module.scss';
 
 const App = observer(() => {
   const { cardsStore, languageStore } = useStore();
+  const { t } = useTranslation();
   
   useEffect(() => {
     const currentLang = getLangFromLS();
@@ -27,7 +29,7 @@ const App = observer(() => {
   return (
     <div className={styles.container}>
       <Header />
-      {cardsStore.cards.length === 0 ? <h2 className={styles.text}>Please, input city name</h2> : <Main />}
+      {cardsStore.cards.length === 0 ? <h2 className={styles.text}>{t('empty')}</h2> : <Main />}
     </div>
   );
 });

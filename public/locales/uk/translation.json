@@ -1,0 +1,15 @@
+{
+  "buttons": {
+    "add": "Додати",
+    "remove": "Видалити всі"
+  },
+  "empty": "Please, input city name",
+  "placeholder": "Назва міста...",
+  "loader": "Завантаження...",
+  "weather": {
+    "feels": "Відчувається як: {{value}}",
+    "wind": "Вітер <1>{{value}}м/с</1>",
+    "humidity": "Вологість <1>{{value}}%</1>",
+    "pressure": "Тиск <1>{{value}}Pa</1>"
+  }
+} 

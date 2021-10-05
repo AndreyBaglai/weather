@@ -1,0 +1,15 @@
+{
+  "buttons": {
+    "add": "לְהוֹסִיף",
+    "remove": "להסיר את כל"
+  },
+  "empty": "Please, input city name",
+  "placeholder": "...שם העיר",
+  "loader": "...טוען",
+  "weather": {
+    "feels": "{{value}} :מרגיש כמו",
+    "wind": "<1>{{value}}m/s</1> רוּחַ",
+    "humidity": "<1>{{value}}%</1> לחות",
+    "pressure": "<1>{{value}}Pa</1> לַחַץ"
+  }
+} 

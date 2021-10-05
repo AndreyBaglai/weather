@@ -10,7 +10,7 @@ import 'sources/styles/styles.scss';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Suspense fallback="Loading... ">
+    <Suspense fallback="Loading...">
       <App />
     </Suspense>
   </React.StrictMode>,

@@ -2,5 +2,14 @@
   "buttons": {
     "add": "Add",
     "remove": "Remove all"
+  },
+  "empty": "Please, input city name",
+  "placeholder": "City name...",
+  "loader": "Loading...",
+  "weather": {
+    "feels": "Feels like: {{value}}",
+    "wind": "Wind <1>{{value}}m/s</1>",
+    "humidity": "Humidity <1>{{value}}%</1>",
+    "pressure": "Pressure <1>{{value}}Pa</1>"
   }
 }

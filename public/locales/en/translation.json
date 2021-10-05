@@ -10,6 +10,30 @@
     "feels": "Feels like: {{value}}",
     "wind": "Wind <1>{{value}}m/s</1>",
     "humidity": "Humidity <1>{{value}}%</1>",
-    "pressure": "Pressure <1>{{value}}Pa</1>"
-  }
+    "pressure": "Pressure <1>{{value}}Pa</1>",
+    "description_rain": "Rain",
+    "description_mist": "Mist",
+    "description_clouds": "Clouds",
+    "description_clear": "Clear",
+    "description_thunderstorm": "Thunderstorm"
+  },
+  "month_0": "Jan",
+  "month_1": "Feb",
+  "month_2": "Mar",
+  "month_3": "Apr",
+  "month_4": "May",
+  "month_5": "June",
+  "month_6": "July",
+  "month_7": "Aug",
+  "month_8": "Sep",
+  "month_9": "Oct",
+  "month_10": "Nov",
+  "month_11": "Dec",
+  "day_0": "Sunday",
+  "day_1": "Monday",
+  "day_2": "Tuesday",
+  "day_3": "Wednesday",
+  "day_4": "Thursday",
+  "day_5": "Friday",
+  "day_6": "Saturday"
 }

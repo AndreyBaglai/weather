@@ -10,6 +10,30 @@
     "feels": "Відчувається як: {{value}}",
     "wind": "Вітер <1>{{value}}м/с</1>",
     "humidity": "Вологість <1>{{value}}%</1>",
-    "pressure": "Тиск <1>{{value}}Pa</1>"
-  }
+    "pressure": "Тиск <1>{{value}}Pa</1>",
+    "description_rain": "Дощ",
+    "description_mist": "Туман",
+    "description_clouds": "Хмари",
+    "description_clear": "Ясно",
+    "description_thunderstorm": "Гроза"
+  },
+  "month_0": "Сiч",
+  "month_1": "Лют",
+  "month_2": "Бер",
+  "month_3": "Квiт",
+  "month_4": "Трав",
+  "month_5": "Черв",
+  "month_6": "Лип",
+  "month_7": "Серп",
+  "month_8": "Вер",
+  "month_9": "Жовт",
+  "month_10": "Лист",
+  "month_11": "Груд",
+  "day_0": "Неділя",
+  "day_1": "Понеділок",
+  "day_2": "Вівторок",
+  "day_3": "Середа",
+  "day_4": "Четвер",
+  "day_5": "П’ятниця",
+  "day_6": "Неділя"
 } 

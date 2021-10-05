@@ -21,13 +21,16 @@ const formatTime = () => {
   return `${hours}:${minutes}`;
 };
 
-const formatDate = () => {
+const formatDate = (t: Function) => {
   const time = new Date();
-  const month = time.getMonth();
-  const day = time.getDay();
+  const monthIdx = time.getMonth();
+  const dayIdx = time.getDay();
   const date = time.getDate();
 
-  return `${DAYS[day]}, ${date} ${MONTHS[month]},`;
+  const shortMonth = t(`month_${monthIdx}`);
+  const day = t(`day_${dayIdx}`);
+
+  return `${day}, ${date} ${shortMonth},`;
 };
 
 const formatTemperature = (temperature: number, isHebrew: string) => {
@@ -48,7 +51,7 @@ const Card: React.FC<IProps> = ({
   onChangeInFahrenheit,
 }) => {
   const { t, i18n } = useTranslation();
-  
+
   return (
     <div
       className={styles.card}
@@ -64,7 +67,7 @@ const Card: React.FC<IProps> = ({
             {cardInfo.city}, {cardInfo.country}
           </div>
           <div className={styles.date}>
-            {formatDate()} {formatTime()}
+            {formatDate(t)} {formatTime()}
           </div>
         </div>
         <div className={styles.weatherIcon}>
@@ -73,7 +76,7 @@ const Card: React.FC<IProps> = ({
             src={`https://openweathermap.org/img/wn/${cardInfo.icon}@2x.png`}
             alt="Icon"
           />
-          <p className={styles.textIcon}>{cardInfo.text_icon}</p>
+          <p className={styles.textIcon}>{t(`weather.description_${cardInfo.text_icon.toLocaleLowerCase()}`)}</p>
         </div>
       </div>
 

@@ -1,14 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Form from '../Form';
-import SelectLanguage from '../SelectLanguage';
-import cardsStore from '../../stores/Cards';
-import { removeAllCardsFromLS } from '../../services/localStorage';
+import Form from 'components/Form';
+import SelectLanguage from 'components/SelectLanguage';
+
+import { useStore } from 'stores';
+import { removeAllCardsFromLS } from 'services/localStorage';
 
 import styles from './styles.module.scss';
 
 const Header: React.FC = () => {
+  const { cardsStore } = useStore();
   const { t } = useTranslation();
 
   const onRemoveAllCards = () => {

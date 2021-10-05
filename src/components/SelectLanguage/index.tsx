@@ -3,16 +3,17 @@ import { observer } from 'mobx-react-lite';
 import uniqId from 'uniqid';
 import { useTranslation } from 'react-i18next';
 
-import { getLangFromLS, setCardsToLS, setLangToLS } from '../../services/localStorage';
-import languageStore from '../../stores/Language';
-import cardsStore from '../../stores/Cards';
-import loaderStore from '../../stores/Loader';
-import { getWeatherByCity } from '../../services/weather-api';
-import { CardModel } from '../../types/card-model';
+import { useStore } from 'stores';
+
+import { CardModel } from 'types/Card';
+import { ILanguages } from 'types/Languages';
+
+import { getLangFromLS, setCardsToLS, setLangToLS } from 'services/localStorage';
+import { getWeatherByCity } from 'services/weather-api';
 
 import styles from './styles.module.scss';
 
-const langs: any = {
+const langs: ILanguages = {
   en: { nativeName: 'English' },
   ru: { nativeName: 'Russian' },
   uk: { nativeName: 'Ukraine' },
@@ -20,6 +21,7 @@ const langs: any = {
 };
 
 const SelectLanguage: React.FC = observer(() => {
+  const { cardsStore, languageStore, loaderStore } = useStore();
   const { i18n } = useTranslation(); 
 
   const onSelectLang = async (e: React.ChangeEvent) => {
@@ -76,7 +78,7 @@ const SelectLanguage: React.FC = observer(() => {
       className={styles.selectLang}
       onChange={onSelectLang}
       defaultValue={getLangFromLS()}>
-      {Object.keys(langs).map((lang: any) => (
+      {Object.keys(langs).map((lang: string) => (
         <option key={lang} value={lang}>
           {lang.toUpperCase()}
         </option>

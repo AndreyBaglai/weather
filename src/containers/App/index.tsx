@@ -7,7 +7,7 @@ import Main from 'components/Main';
 
 import { useStore } from 'stores';
 
-import { getCardsFromLS, getLangFromLS, setLangToLS } from '../../services/localStorage';
+import { getCardsFromLS, getLangFromLS, setLangToLS } from 'services/localStorage';
 
 import styles from './styles.module.scss';
 

@@ -4,12 +4,11 @@ import { observer } from 'mobx-react-lite';
 import Loader from 'components/Loader';
 import Card from 'components/Card';
 
-import { CardModel } from '../../types/card-model';
-
 import { useStore } from 'stores';
+import { CardModel } from 'types/Card';
 
-import { removeCardFromLS, updateCardByIdInLS } from '../../services/localStorage';
-import { convertToCelsius, convertToFahrenheit } from '../../shared/convert-temperature';
+import { removeCardFromLS, updateCardByIdInLS } from 'services/localStorage';
+import { convertToCelsius, convertToFahrenheit } from 'shared/convert-temperature';
 
 import styles from './styles.module.scss';
 

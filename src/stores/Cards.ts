@@ -1,5 +1,5 @@
 import { action, makeObservable, observable } from 'mobx';
-import { CardModel } from '../types/card-model';
+import { CardModel } from '../types/Card';
 
 class Store {
   constructor() {

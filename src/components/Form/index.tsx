@@ -4,10 +4,10 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { useStore } from 'stores';
-import { CardModel } from '../../types/card-model';
+import { CardModel } from 'types/Card';
 
-import { getWeatherByCity } from '../../services/weather-api';
-import { setCardsToLS } from '../../services/localStorage';
+import { getWeatherByCity } from 'services/weather-api';
+import { setCardsToLS } from 'services/localStorage';
 
 import styles from './styles.module.scss';
 

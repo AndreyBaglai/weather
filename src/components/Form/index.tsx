@@ -68,7 +68,7 @@ const Form: React.FC = () => {
 
       cardsStore.addCard(card);
       setCardsToLS(cardsStore.cards);
-    } catch (err: any) {
+    } catch (err) {
       console.log(`Invalid city name ${err}`);
     }
   };

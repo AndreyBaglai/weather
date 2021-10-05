@@ -22,15 +22,17 @@ const langs: ILanguages = {
 
 const SelectLanguage: React.FC = observer(() => {
   const { cardsStore, languageStore, loaderStore } = useStore();
-  const { i18n } = useTranslation(); 
+  const { i18n } = useTranslation();
 
-  const onSelectLang = async (e: React.ChangeEvent) => {
+  const onSelectLang = async (event: React.ChangeEvent) => {
     loaderStore.toggleLoader();
-    const target = e.target as HTMLOptionElement;
+    
+    const target = event.target as HTMLOptionElement;
     const selectedLang = target.value;
     i18n.changeLanguage(selectedLang);
-    
+
     const cityNames = cardsStore.getAllNamesCity();
+    
     const preparedRequests = cityNames.map(
       (city: string) =>
         new Promise((resolve, _) => {

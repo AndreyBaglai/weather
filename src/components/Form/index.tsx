@@ -17,6 +17,7 @@ interface IInputs {
 
 const Form: React.FC = () => {
   const [isNotFound, setIsNotFound] = useState(false);
+  const [isRepeatCity, setIsRepeatCity] = useState(false);
   const { t } = useTranslation();
 
   const {
@@ -60,6 +61,11 @@ const Form: React.FC = () => {
         isCelsius: true,
       };
 
+      if (cardsStore.isRepeatCard(card)) {
+        setTimeout(() => setIsRepeatCity(false), 2000);
+        setIsRepeatCity(true);
+      }
+
       cardsStore.addCard(card);
       setCardsToLS(cardsStore.cards);
     } catch (err: any) {
@@ -77,12 +83,13 @@ const Form: React.FC = () => {
         {...register('city', {
           pattern: {
             value: /^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Zа-яА-Я\u0080-\u024F]*$/,
-            message: 'Must be only letters',
+            message: t('tooltips.validate'),
           },
         })}
       />
       {errors.city && <p className={styles.error}>{errors.city.message}</p>}
-      {isNotFound && <p className={styles.error}>City not found</p>}
+      {isNotFound && <p className={styles.error}>{t('tooltips.not_found')}</p>}
+      {isRepeatCity && <p className={styles.error}>{t('tooltips.city_repeat')}</p>}
       <button className={styles.addBtn} id="addBtn">
         {t('buttons.add')}
       </button>

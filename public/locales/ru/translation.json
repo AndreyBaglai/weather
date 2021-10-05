@@ -3,7 +3,7 @@
     "add": "Добавить",
     "remove": "Удалить все"
   },
-  "empty": "Please, input city name",
+  "empty": "Пожалуйста, введите название города",
   "placeholder": "Имя города...",
   "loader": "Загрузка...",
   "weather": {
@@ -11,29 +11,40 @@
     "wind": "Ветер <1>{{value}}м/с</1>",
     "humidity": "Влажность <1>{{value}}%</1>",
     "pressure": "Давление <1>{{value}}Pa</1>",
-    "description_rain": "Дождь",
-    "description_mist": "Туман",
-    "description_clouds": "Облака",
-    "description_clear": "Ясно",
-    "description_thunderstorm": "Гроза"
+    "descriptions": {
+      "description_rain": "Дождь",
+      "description_mist": "Туман",
+      "description_clouds": "Облака",
+      "description_clear": "Ясно",
+      "description_thunderstorm": "Гроза"
+    }
   },
-  "month_0": "Янв",
-  "month_1": "Фев",
-  "month_2": "Мар",
-  "month_3": "Апр",
-  "month_4": "Май",
-  "month_5": "Июн",
-  "month_6": "Июл",
-  "month_7": "Авг",
-  "month_8": "Сен",
-  "month_9": "Окт",
-  "month_10": "Ноя",
-  "month_11": "Дек",
-  "day_0": "Воскресенье",
-  "day_1": "Понедельник",
-  "day_2": "Вторник",
-  "day_3": "Среда",
-  "day_4": "Четверг",
-  "day_5": "Пятница",
-  "day_6": "Суббота"
+  "tooltips": {
+    "validate": "Должны быть только буквы",
+    "not_found": "Город не найден",
+    "city_repeat": "Город уже существует"
+  },
+  "months": {
+    "month_0": "Янв",
+    "month_1": "Фев",
+    "month_2": "Мар",
+    "month_3": "Апр",
+    "month_4": "Май",
+    "month_5": "Июн",
+    "month_6": "Июл",
+    "month_7": "Авг",
+    "month_8": "Сен",
+    "month_9": "Окт",
+    "month_10": "Ноя",
+    "month_11": "Дек"
+  },
+  "days": {
+    "day_0": "Воскресенье",
+    "day_1": "Понедельник",
+    "day_2": "Вторник",
+    "day_3": "Среда",
+    "day_4": "Четверг",
+    "day_5": "Пятница",
+    "day_6": "Суббота"
+  }
 }

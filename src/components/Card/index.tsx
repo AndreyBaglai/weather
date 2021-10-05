@@ -27,8 +27,8 @@ const formatDate = (t: Function) => {
   const dayIdx = time.getDay();
   const date = time.getDate();
 
-  const shortMonth = t(`month_${monthIdx}`);
-  const day = t(`day_${dayIdx}`);
+  const shortMonth = t(`months.month_${monthIdx}`);
+  const day = t(`days.day_${dayIdx}`);
 
   return `${day}, ${date} ${shortMonth},`;
 };
@@ -73,14 +73,23 @@ const Card: React.FC<IProps> = ({
         <div className={styles.weatherIcon}>
           <img
             className={styles.icon}
-            src={`https://openweathermap.org/img/wn/${cardInfo.icon}@2x.png`}
+            src={`${process.env.REACT_APP_WEATHER_ICON_URL}${cardInfo.icon}@2x.png`}
             alt="Icon"
           />
-          <p className={styles.textIcon}>{t(`weather.description_${cardInfo.text_icon.toLocaleLowerCase()}`)}</p>
+          <p className={styles.textIcon}>{t(`weather.descriptions.description_${cardInfo.text_icon.toLocaleLowerCase()}`)}</p>
         </div>
       </div>
 
       <div className={styles.graphic}>
+      <ul className={styles.tempList}>
+          <li>10</li>
+          <li>13</li>
+          <li>16</li>
+          <li>13</li>
+          <li>10</li>
+          <li>10</li>
+          <li>07</li>
+        </ul>
         {cardInfo.temperature > 0 ? (
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path
@@ -96,6 +105,15 @@ const Card: React.FC<IProps> = ({
               d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
           </svg>
         )}
+        <ul className={styles.week}>
+          <li>19.04</li>
+          <li>20.04</li>
+          <li>21.04</li>
+          <li>22.04</li>
+          <li>23.04</li>
+          <li>24.04</li>
+          <li>25.04</li>
+        </ul>
       </div>
 
       <div className={styles.cardBottom}>

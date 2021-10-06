@@ -23,28 +23,5 @@
     "validate": "Must be only letters",
     "not_found": "City not found",
     "city_repeat": "City already exists"
-  },
-  "months": {
-    "month_0": "Jan",
-    "month_1": "Feb",
-    "month_2": "Mar",
-    "month_3": "Apr",
-    "month_4": "May",
-    "month_5": "June",
-    "month_6": "July",
-    "month_7": "Aug",
-    "month_8": "Sep",
-    "month_9": "Oct",
-    "month_10": "Nov",
-    "month_11": "Dec"
-  },
-  "days": {
-    "day_0": "Sunday",
-    "day_1": "Monday",
-    "day_2": "Tuesday",
-    "day_3": "Wednesday",
-    "day_4": "Thursday",
-    "day_5": "Friday",
-    "day_6": "Saturday"
   }
 }

@@ -1,0 +1,14 @@
+.weatherInfo {
+  text-align: right;
+  p {
+    margin: 4px 0;
+
+    .blueText {
+      color: #459de9;
+    }
+
+    .orangeText {
+      color: #ffc600;
+    }
+  }
+}

@@ -10,6 +10,7 @@ import { CardModel } from 'types/Card';
 import { formatDate, formatTemperature, formatTime } from 'shared/format-data';
 
 import styles from './styles.module.scss';
+import WeatherInfo from './WeatherInfo';
 
 interface IProps {
   onChangeInCelsius: (event: React.MouseEvent) => void;
@@ -85,24 +86,8 @@ const Card: React.FC<IProps> = ({
             })}
           </div>
         </div>
-        <div className={styles.weatherInfo}>
-          <p>{cardInfo.description}</p>
-          <p>
-            <Trans i18nKey="weather.wind" values={{ value: cardInfo.wind_speed }}>
-              Wind <span className={styles.value}>m/s</span>
-            </Trans>
-          </p>
-          <p>
-            <Trans i18nKey="weather.humidity" values={{ value: cardInfo.humidity }}>
-              Humidity <span className={styles.value}>%</span>
-            </Trans>
-          </p>
-          <p>
-            <Trans i18nKey="weather.pressure" values={{ value: cardInfo.pressure }}>
-              Pressure <span className={styles.value}>Pa</span>
-            </Trans>
-          </p>
-        </div>
+
+        <WeatherInfo temperature={Math.ceil(cardInfo.temperature)} description={cardInfo.description} wind={cardInfo.wind_speed} humidity={cardInfo.humidity} pressure={cardInfo.pressure} />
       </div>
     </div>
   );

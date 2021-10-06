@@ -16,11 +16,12 @@ import { setCardsToLS } from 'services/localStorage';
 import { SHOW_TOOLTIP_TIME } from 'utils/const';
 
 import styles from './styles.module.scss';
+import i18n from 'config/i18n';
 
 const Form: React.FC = () => {
   const [isNotFound, setIsNotFound] = useState(false);
   const [isRepeatCity, setIsRepeatCity] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const {
     register,
@@ -41,7 +42,7 @@ const Form: React.FC = () => {
       if (city === '') return;
 
       const response = await getWeatherByCity(city, languageStore.lang);
-    
+
       if (!response) {
         setIsNotFound(true);
         setTimeout(() => setIsNotFound(false), SHOW_TOOLTIP_TIME);
@@ -81,6 +82,7 @@ const Form: React.FC = () => {
         type="text"
         className={styles.cityField}
         id="city"
+        lang={i18n.language}
         placeholder={t('placeholder')}
         {...register('city', {
           pattern: {

@@ -6,10 +6,10 @@ export type CardModel = {
   temperature: number;
   city: string;
   country: string;
-  icon: string;
-  text_icon: string;
+  icon: string | null | undefined;
+  text_icon: string | null | undefined;
   time: number;
   feels: number;
-  description: string;
+  description: string | null | undefined;
   isCelsius: boolean;
 };

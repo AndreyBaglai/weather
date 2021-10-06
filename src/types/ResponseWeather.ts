@@ -1,29 +1,29 @@
 export interface IResponseWeather {
-  coord: Coord;
-  weather?: WeatherEntity[] | null;
+  coord: ICoord;
+  weather?: IWeatherEntity[] | null;
   base: string;
-  main: Main;
+  main: IMain;
   visibility: number;
-  wind: Wind;
-  clouds: Clouds;
+  wind: IWind;
+  clouds: IClouds;
   dt: number;
-  sys: Sys;
+  sys: ISys;
   timezone: number;
   id: number;
   name: string;
   cod: number;
 }
-export interface Coord {
+export interface ICoord {
   lon: number;
   lat: number;
 }
-export interface WeatherEntity {
+export interface IWeatherEntity {
   id: number;
   main: string;
   description: string;
   icon: string;
 }
-export interface Main {
+export interface IMain {
   temp: number;
   feels_like: number;
   temp_min: number;
@@ -31,14 +31,14 @@ export interface Main {
   pressure: number;
   humidity: number;
 }
-export interface Wind {
+export interface IWind {
   speed: number;
   deg: number;
 }
-export interface Clouds {
+export interface IClouds {
   all: number;
 }
-export interface Sys {
+export interface ISys {
   type: number;
   id: number;
   message: number;

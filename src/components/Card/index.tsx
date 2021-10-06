@@ -78,7 +78,7 @@ const Card: React.FC<IProps> = ({
             src={`${process.env.REACT_APP_WEATHER_ICON_URL}${cardInfo.icon}@2x.png`}
             alt="Icon"
           />
-          <p className={styles.textIcon}>{t(`weather.descriptions.description_${cardInfo.text_icon.toLocaleLowerCase()}`)}</p>
+          <p className={styles.textIcon}>{t(`weather.descriptions.description_${cardInfo.text_icon?.toLocaleLowerCase()}`)}</p>
         </div>
       </div>
 

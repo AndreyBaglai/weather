@@ -7,7 +7,7 @@ import { useStore } from 'stores';
 
 import { CardModel } from 'types/Card';
 import { ILanguages } from 'types/Languages';
-import { IResponseWeather } from 'types/ResponseWeather';
+import { IResponseWeather, IWeatherEntity } from 'types/ResponseWeather';
 
 import { getLangFromLS, setCardsToLS, setLangToLS } from 'services/localStorage';
 import { getWeatherByCity } from 'services/weather-api';
@@ -34,7 +34,7 @@ const SelectLanguage: React.FC = observer(() => {
 
     const cityNames = cardsStore.getAllNamesCity();
     
-    const preparedRequests = cityNames.map(
+    const preparedRequests: Promise<IResponseWeather>[] = cityNames.map(
       (city: string) =>
         new Promise((resolve, _) => {
           resolve(getWeatherByCity(city, selectedLang));
@@ -42,7 +42,8 @@ const SelectLanguage: React.FC = observer(() => {
     );
 
     const newCards = await Promise.all(preparedRequests).then((response) =>
-      response.map((item: any) => {
+      response.map((item: IResponseWeather) => {
+        const weatherInfo = item.weather && item.weather[0];
         const card: CardModel = {
           id: uniqId(),
           city: item.name,
@@ -52,9 +53,9 @@ const SelectLanguage: React.FC = observer(() => {
           humidity: item.main.humidity,
           pressure: item.main.pressure,
           feels: item.main.feels_like,
-          icon: item.weather[0].icon,
-          text_icon: item.weather[0].main,
-          description: item.weather[0].description,
+          icon: weatherInfo && weatherInfo.icon,
+          text_icon: weatherInfo && weatherInfo.main,
+          description: weatherInfo && weatherInfo.description,
           wind_speed: item.wind.speed,
           isCelsius: true,
         };

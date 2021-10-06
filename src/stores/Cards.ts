@@ -19,7 +19,7 @@ class Store {
     return this.cards.some((item: CardModel) => {
       return (
         item.city.toLowerCase() === card.city.toLowerCase() &&
-        item.description.toLowerCase() === card.description.toLowerCase()
+        item.description?.toLowerCase() === card.description?.toLowerCase()
       );
     });
   }

@@ -8,7 +8,7 @@ export const formatTime = () => {
   return `${hours}:${minutes}`;
 };
 
-export const formatDate = (t: TFunction<"translation">) => {
+export const formatDate = (t: TFunction<"translation">, lang: string) => {
   const time = new Date();
   const monthIdx = time.getMonth();
   const dayIdx = time.getDay();
@@ -17,14 +17,14 @@ export const formatDate = (t: TFunction<"translation">) => {
   const shortMonth = t(`months.month_${monthIdx}`);
   const day = t(`days.day_${dayIdx}`);
 
-  return `${day}, ${date} ${shortMonth},`;
+  return lang === 'he' ? `${day} ${shortMonth} ${date},`: `${day}, ${date} ${shortMonth},`;
 };
 
-export const formatTemperature = (temperature: number, isHebrew: string) => {
+export const formatTemperature = (temperature: number, lang: string) => {
   const roundedTemperature = Math.ceil(temperature);
   if (roundedTemperature === 0) return '0';
 
-  if (isHebrew === 'he') {
+  if (lang === 'he') {
     return roundedTemperature > 0 ? `${roundedTemperature}+` : `${Math.abs(roundedTemperature)}-`;
   } else {
     return roundedTemperature > 0 ? `+${roundedTemperature}` : `-${roundedTemperature}`;

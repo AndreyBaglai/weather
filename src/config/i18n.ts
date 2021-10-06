@@ -9,12 +9,15 @@ i18n
   .use(initReactI18next)
   .init({
     backend: {
-      loadPath: `${window.origin}${process.env.REACT_APP_I18N_BACKEND_PATH}`
+      loadPath: `${window.origin}${process.env.REACT_APP_I18N_BACKEND_PATH}`,
+    },
+    react: {
+      useSuspense: false,
     },
     debug: true,
     fallbackLng: 'en',
     interpolation: {
-      escapeValue: false, 
+      escapeValue: false,
     },
   });
 

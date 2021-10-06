@@ -41,7 +41,7 @@ const Card: React.FC<IProps> = ({
             {cardInfo.city}, {cardInfo.country}
           </div>
           <div className={styles.date}>
-            {formatDate(t)} {formatTime()}
+            {formatDate(t, i18n.language)} {formatTime()}
           </div>
         </div>
 

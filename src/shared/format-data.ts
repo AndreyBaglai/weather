@@ -16,7 +16,6 @@ export const formatDate = (lang: string) => {
 
   const formatter = new Intl.DateTimeFormat(lang, {
     weekday: 'long',
-    year: 'numeric',
     month: 'short',
     day: 'numeric',
   });

@@ -1,6 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
-import { useTranslation } from 'react-i18next';
 
 import Button from 'components/Button';
 import Graphic from './Graphic';
@@ -10,7 +8,6 @@ import CurrentDate from './CurrentDate';
 import Temperature from './Temperature';
 
 import { CardModel } from 'types/Card';
-import { formatTemperature } from 'shared/format-data';
 
 import styles from './styles.module.scss';
 
@@ -27,8 +24,6 @@ const Card: React.FC<IProps> = ({
   onChangeInCelsius,
   onChangeInFahrenheit,
 }) => {
-  const { t, i18n } = useTranslation();
-
   return (
     <div
       className={styles.card}

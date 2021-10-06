@@ -1,0 +1,35 @@
+.temperatureWrapper {
+  position: relative;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .feels {
+    color: #c5c5c5;
+    position: relative;
+    top: 10px;
+  }
+
+  .temperature {
+    font-size: 48px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  .metric {
+    font-weight: normal;
+    position: relative;
+    bottom: 24px;
+
+    .celsius,
+    .fahrenheit {
+      cursor: pointer;
+    }
+
+    .celsius.active,
+    .fahrenheit.active {
+      color: rgb(15, 196, 15);
+    }
+  }
+}

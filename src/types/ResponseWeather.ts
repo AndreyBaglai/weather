@@ -1,6 +1,6 @@
-export interface ResponseWeather {
+export interface IResponseWeather {
   coord: Coord;
-  weather?: (WeatherEntity)[] | null;
+  weather?: WeatherEntity[] | null;
   base: string;
   main: Main;
   visibility: number;

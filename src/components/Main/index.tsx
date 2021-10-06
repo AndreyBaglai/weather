@@ -15,8 +15,8 @@ import styles from './styles.module.scss';
 const Main: React.FC = observer(() => {
   const { loaderStore, cardsStore } = useStore();
 
-  const onChangeInCelsius = ({ currentTarget }: React.MouseEvent) => {
-    const targetElem = currentTarget as HTMLElement;
+  const onChangeInCelsius = (event: React.MouseEvent) => {
+    const targetElem = event.currentTarget as HTMLElement;
     const id = targetElem.dataset.id;
 
     if (id) {

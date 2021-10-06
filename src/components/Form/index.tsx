@@ -6,16 +6,16 @@ import { useTranslation } from 'react-i18next';
 import Button from 'components/Button';
 
 import { useStore } from 'stores';
+
+import { IInputs } from 'types/Input';
 import { CardModel } from 'types/Card';
 
 import { getWeatherByCity } from 'services/weather-api';
 import { setCardsToLS } from 'services/localStorage';
 
-import styles from './styles.module.scss';
+import { SHOW_TOOLTIP_TIME } from 'utils/const';
 
-interface IInputs {
-  city: string;
-}
+import styles from './styles.module.scss';
 
 const Form: React.FC = () => {
   const [isNotFound, setIsNotFound] = useState(false);
@@ -44,7 +44,7 @@ const Form: React.FC = () => {
     
       if (!response) {
         setIsNotFound(true);
-        setTimeout(() => setIsNotFound(false), 2000);
+        setTimeout(() => setIsNotFound(false), SHOW_TOOLTIP_TIME);
       }
 
       const card: CardModel = {
@@ -64,7 +64,7 @@ const Form: React.FC = () => {
       };
 
       if (cardsStore.isRepeatCard(card)) {
-        setTimeout(() => setIsRepeatCity(false), 2000);
+        setTimeout(() => setIsRepeatCity(false), SHOW_TOOLTIP_TIME);
         setIsRepeatCity(true);
       }
 

@@ -11,7 +11,7 @@ interface IProps {
 }
 
 const CurrentDate: React.FC<IProps> = ({ city, country }) => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   return (
     <div className={styles.countryInfo}>
@@ -19,7 +19,7 @@ const CurrentDate: React.FC<IProps> = ({ city, country }) => {
         {city}, {country}
       </div>
       <div className={styles.date}>
-        {formatDate(t, i18n.language)} {formatTime()}
+        {formatDate(i18n.language)} {formatTime(i18n.language)}
       </div>
     </div>
   );

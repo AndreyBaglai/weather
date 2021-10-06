@@ -1,27 +1,32 @@
-import { TFunction } from "react-i18next";
+import { TFunction } from 'react-i18next';
 
-export const formatTime = () => {
+export const formatTime = (lang: string) => {
   const date = new Date();
-  const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
-  const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
 
-  return `${hours}:${minutes}`;
+  const formatter = new Intl.DateTimeFormat(lang, {
+    hour: 'numeric',
+    minute: 'numeric',
+  });
+
+  return formatter.format(date);
 };
 
-export const formatDate = (t: TFunction<"translation">, lang: string) => {
-  const time = new Date();
-  const monthIdx = time.getMonth();
-  const dayIdx = time.getDay();
-  const date = time.getDate();
+export const formatDate = (lang: string) => {
+  const date = new Date();
 
-  const shortMonth = t(`months.month_${monthIdx}`);
-  const day = t(`days.day_${dayIdx}`);
+  const formatter = new Intl.DateTimeFormat(lang, {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
 
-  return lang === 'he' ? `${day} ${shortMonth} ${date},`: `${day}, ${date} ${shortMonth},`;
+  return formatter.format(date);
 };
 
 export const formatTemperature = (temperature: number, lang: string) => {
   const roundedTemperature = Math.ceil(temperature);
+
   if (roundedTemperature === 0) return '0';
 
   if (lang === 'he') {

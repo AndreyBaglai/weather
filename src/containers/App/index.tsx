@@ -14,7 +14,7 @@ import styles from './styles.module.scss';
 const App = observer(() => {
   const { cardsStore, languageStore } = useStore();
   const { t } = useTranslation();
-  
+
   useEffect(() => {
     const currentLang = getLangFromLS();
     const currentCards = getCardsFromLS();

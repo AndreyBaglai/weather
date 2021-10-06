@@ -9,7 +9,7 @@ i18n
   .use(initReactI18next)
   .init({
     backend: {
-      loadPath: `${window.origin}/weather/locales/{{lng}}/{{ns}}.json`
+      loadPath: `${window.origin}${process.env.REACT_APP_I18N_BACKEND_PATH}`
     },
     debug: true,
     fallbackLng: 'en',

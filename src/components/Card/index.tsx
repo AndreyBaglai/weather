@@ -1,16 +1,18 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import Button from 'components/Button';
-
 import Graphic from './Graphic';
+import WeatherInfo from './WeatherInfo';
+import WeatherIcon from './WeatherIcon';
+import CurrentDate from './CurrentDate';
+import Temperature from './Temperature';
 
 import { CardModel } from 'types/Card';
-import { formatDate, formatTemperature, formatTime } from 'shared/format-data';
+import { formatTemperature } from 'shared/format-data';
 
 import styles from './styles.module.scss';
-import WeatherInfo from './WeatherInfo';
 
 interface IProps {
   onChangeInCelsius: (event: React.MouseEvent) => void;
@@ -37,57 +39,28 @@ const Card: React.FC<IProps> = ({
       </Button>
 
       <div className={styles.cardTop}>
-        <div className={styles.countryInfo}>
-          <div className={styles.country}>
-            {cardInfo.city}, {cardInfo.country}
-          </div>
-          <div className={styles.date}>
-            {formatDate(t, i18n.language)} {formatTime()}
-          </div>
-        </div>
-
-        <div className={styles.weatherIcon}>
-          <img
-            className={styles.icon}
-            src={`${process.env.REACT_APP_WEATHER_ICON_URL}${cardInfo.icon}@2x.png`}
-            alt="Icon"
-          />
-          <p className={styles.textIcon}>{t(`weather.descriptions.description_${cardInfo.text_icon?.toLocaleLowerCase()}`)}</p>
-        </div>
+        <CurrentDate city={cardInfo.city} country={cardInfo.country} />
+        <WeatherIcon icon={cardInfo.icon} text={cardInfo.text_icon?.toLocaleLowerCase()} />
       </div>
 
       <Graphic temperature={cardInfo.temperature} />
 
       <div className={styles.cardBottom}>
-        <div className={styles.temperatureWrapper}>
-          <div className={styles.mainTemperature}>
-            <span className={styles.temperature}>
-              {formatTemperature(cardInfo.temperature, i18n.language)}
-            </span>
-            <span className={styles.metric}>
-              <span
-                data-id={cardInfo.id}
-                onClick={onChangeInCelsius}
-                className={classNames(styles.celsius, { [styles.active]: cardInfo.isCelsius })}>
-                &deg;C
-              </span>{' '}
-              |{' '}
-              <span
-                data-id={cardInfo.id}
-                onClick={onChangeInFahrenheit}
-                className={classNames(styles.fahrenheit, { [styles.active]: !cardInfo.isCelsius })}>
-                &deg;F
-              </span>
-            </span>
-          </div>
-          <div className={styles.feels}>
-            {t('weather.feels', {
-              value: formatTemperature(Math.ceil(cardInfo.feels), i18n.language),
-            })}
-          </div>
-        </div>
-
-        <WeatherInfo temperature={Math.ceil(cardInfo.temperature)} description={cardInfo.description} wind={cardInfo.wind_speed} humidity={cardInfo.humidity} pressure={cardInfo.pressure} />
+        <Temperature
+          temperature={cardInfo.temperature}
+          onChangeInCelsius={onChangeInCelsius}
+          onChangeInFahrenheit={onChangeInFahrenheit}
+          isCelsius={cardInfo.isCelsius}
+          feels={cardInfo.feels}
+          id={cardInfo.id}
+        />
+        <WeatherInfo
+          temperature={Math.ceil(cardInfo.temperature)}
+          description={cardInfo.description}
+          wind={cardInfo.wind_speed}
+          humidity={cardInfo.humidity}
+          pressure={cardInfo.pressure}
+        />
       </div>
     </div>
   );

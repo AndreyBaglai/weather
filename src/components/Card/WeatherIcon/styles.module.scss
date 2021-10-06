@@ -1,0 +1,10 @@
+.weatherIcon {
+  color: #c5c5c5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .icon {
+    max-height: 70px;
+  }
+}

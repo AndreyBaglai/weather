@@ -40,4 +40,3 @@ export function getLangFromLS(): string {
 export function setLangToLS(lang: string): void {
   localStorage.setItem(CURRENT_LANG, JSON.stringify(lang));
 }
-

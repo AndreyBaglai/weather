@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import Form from 'components/Form';
 import SelectLanguage from 'components/SelectLanguage';
+import Button from 'components/Button';
 
 import { useStore } from 'stores';
 import { removeAllCardsFromLS } from 'services/localStorage';
@@ -21,7 +22,7 @@ const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <Form />
-      <button className={styles.removeAll} onClick={onRemoveAllCards}>{t('buttons.remove')}</button>
+      <Button classBtn={styles.removeAll} handler={onRemoveAllCards}>{t('buttons.remove')}</Button>
       <SelectLanguage />
     </header>
   );

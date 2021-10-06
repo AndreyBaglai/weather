@@ -7,7 +7,7 @@ import { useStore } from 'stores';
 
 import { CardModel } from 'types/Card';
 import { ILanguages } from 'types/Languages';
-import { IResponseWeather, IWeatherEntity } from 'types/ResponseWeather';
+import { IResponseWeather } from 'types/ResponseWeather';
 
 import { getLangFromLS, setCardsToLS, setLangToLS } from 'services/localStorage';
 import { getWeatherByCity } from 'services/weather-api';

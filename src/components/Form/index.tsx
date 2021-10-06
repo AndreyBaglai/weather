@@ -3,6 +3,8 @@ import uniqId from 'uniqid';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import Button from 'components/Button';
+
 import { useStore } from 'stores';
 import { CardModel } from 'types/Card';
 
@@ -90,9 +92,9 @@ const Form: React.FC = () => {
       {errors.city && <p className={styles.error}>{errors.city.message}</p>}
       {isNotFound && <p className={styles.error}>{t('tooltips.not_found')}</p>}
       {isRepeatCity && <p className={styles.error}>{t('tooltips.city_repeat')}</p>}
-      <button className={styles.addBtn} id="addBtn">
+      <Button classBtn={styles.addBtn} id="addBtn">
         {t('buttons.add')}
-      </button>
+      </Button>
     </form>
   );
 };

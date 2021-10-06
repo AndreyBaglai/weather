@@ -1,10 +1,13 @@
 import React from 'react';
 import classNames from 'classnames';
-import { TFunction, Trans, useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
+
+import Button from 'components/Button';
+
+import Graphic from './Graphic';
 
 import { CardModel } from 'types/Card';
-
-import { ReactComponent as GraphicIcon } from 'sources/icons/graphic.svg';
+import { formatDate, formatTemperature, formatTime } from 'shared/format-data';
 
 import styles from './styles.module.scss';
 
@@ -14,37 +17,6 @@ interface IProps {
   onChangeInFahrenheit: (event: React.MouseEvent) => void;
   cardInfo: CardModel;
 }
-
-const formatTime = () => {
-  const date = new Date();
-  const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
-  const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
-
-  return `${hours}:${minutes}`;
-};
-
-const formatDate = (t: TFunction<"translation">) => {
-  const time = new Date();
-  const monthIdx = time.getMonth();
-  const dayIdx = time.getDay();
-  const date = time.getDate();
-
-  const shortMonth = t(`months.month_${monthIdx}`);
-  const day = t(`days.day_${dayIdx}`);
-
-  return `${day}, ${date} ${shortMonth},`;
-};
-
-const formatTemperature = (temperature: number, isHebrew: string) => {
-  const roundedTemperature = Math.ceil(temperature);
-  if (roundedTemperature === 0) return '0';
-
-  if (isHebrew === 'he') {
-    return roundedTemperature > 0 ? `${roundedTemperature}+` : `${Math.abs(roundedTemperature)}-`;
-  } else {
-    return roundedTemperature > 0 ? `+${roundedTemperature}` : `-${roundedTemperature}`;
-  }
-};
 
 const Card: React.FC<IProps> = ({
   onRemoveCard,
@@ -59,9 +31,9 @@ const Card: React.FC<IProps> = ({
       className={styles.card}
       id={String(cardInfo.id)}
       style={{ backgroundColor: cardInfo.temperature < 0 ? '#F1F2FF' : '#fff1fe' }}>
-      <button className={styles.removeCard} onClick={onRemoveCard}>
+      <Button classBtn={styles.removeCard} handler={onRemoveCard}>
         X
-      </button>
+      </Button>
 
       <div className={styles.cardTop}>
         <div className={styles.countryInfo}>
@@ -72,6 +44,7 @@ const Card: React.FC<IProps> = ({
             {formatDate(t)} {formatTime()}
           </div>
         </div>
+
         <div className={styles.weatherIcon}>
           <img
             className={styles.icon}
@@ -82,29 +55,7 @@ const Card: React.FC<IProps> = ({
         </div>
       </div>
 
-      <div className={styles.graphic}>
-      <ul className={styles.tempList}>
-          <li>10</li>
-          <li>13</li>
-          <li>16</li>
-          <li>13</li>
-          <li>10</li>
-          <li>10</li>
-          <li>07</li>
-        </ul>
-
-        <GraphicIcon className={cardInfo.temperature > 0 ? styles.redGraphic : styles.blueGraphic}/>
-
-        <ul className={styles.week}>
-          <li>19.04</li>
-          <li>20.04</li>
-          <li>21.04</li>
-          <li>22.04</li>
-          <li>23.04</li>
-          <li>24.04</li>
-          <li>25.04</li>
-        </ul>
-      </div>
+      <Graphic temperature={cardInfo.temperature} />
 
       <div className={styles.cardBottom}>
         <div className={styles.temperatureWrapper}>

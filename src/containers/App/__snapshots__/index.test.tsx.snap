@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App render App component 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <header
+      class="header"
+    >
+      <form
+        class="form"
+      >
+        <input
+          class="cityField"
+          id="city"
+          name="city"
+          placeholder="placeholder"
+          type="text"
+        />
+        <button
+          class="addBtn"
+        >
+          buttons.add
+        </button>
+      </form>
+      <button
+        class="removeAll"
+      >
+        buttons.remove
+      </button>
+      <select
+        class="selectLang"
+        id="lang"
+        name="language"
+      >
+        <option
+          value="en"
+        >
+          EN
+        </option>
+        <option
+          value="ru"
+        >
+          RU
+        </option>
+        <option
+          value="uk"
+        >
+          UK
+        </option>
+        <option
+          value="he"
+        >
+          HE
+        </option>
+      </select>
+    </header>
+    <h2
+      class="text"
+    >
+      empty
+    </h2>
+  </div>
+</DocumentFragment>
+`;

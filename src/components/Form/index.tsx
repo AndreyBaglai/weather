@@ -16,7 +16,6 @@ import { setCardsToLS } from 'services/localStorage';
 import { SHOW_TOOLTIP_TIME } from 'utils/const';
 
 import styles from './styles.module.scss';
-import i18n from 'config/i18n';
 
 const Form: React.FC = () => {
   const [isNotFound, setIsNotFound] = useState(false);

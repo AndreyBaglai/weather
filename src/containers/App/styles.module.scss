@@ -1,6 +1,8 @@
 .container {
   max-width: 1920px;
   padding: 0 40px;
+  box-sizing: border-box;
+  margin: 0 auto;
 
   .text {
     text-align: center;

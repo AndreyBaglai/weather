@@ -20,7 +20,7 @@ const Header: React.FC = () => {
   }
   
   return (
-    <header className={styles.header}>
+    <header className={styles.header} data-testid={'header-element'}>
       <Form />
       <Button classBtn={styles.removeAll} handler={onRemoveAllCards}>{t('buttons.remove')}</Button>
       <SelectLanguage />

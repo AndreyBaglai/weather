@@ -27,7 +27,7 @@ const App = observer(() => {
   }, []);
 
   return (
-    <div className={styles.container} data-testid={'container-element'}>
+    <div className={styles.container} data-testid={"container-element"}>
       <Header />
       {cardsStore.cards.length === 0 ? <h2 className={styles.text}>{t('empty')}</h2> : <Main />}
     </div>

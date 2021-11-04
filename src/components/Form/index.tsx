@@ -76,7 +76,7 @@ const Form: React.FC = () => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmitForm)}>
+    <form data-testid={"form-element"} className={styles.form} onSubmit={handleSubmit(onSubmitForm)}>
       <input
         type="text"
         className={styles.cityField}

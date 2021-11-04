@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 interface IProps {
   handler?: any;
@@ -11,7 +11,7 @@ const Button: React.FC<IProps> = ({ handler, classBtn, children }) => {
     <button className={classBtn} onClick={handler}>
       {children}
     </button>
-  )
-}
+  );
+};
 
 export default Button;

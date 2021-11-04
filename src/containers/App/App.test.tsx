@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 
 import App from './index';
 
-describe('App', () => {
+describe('App component', () => {
   it('take a snapshot when render', () => {
     const component = render(<App />);
     expect(component).toMatchSnapshot();
@@ -10,7 +10,6 @@ describe('App', () => {
 
   it('checking the structure of the application', () => {
     render(<App />);
-    expect(screen.getByTestId('container-element')).not.toBeEmpty();
 
     // header
     expect(screen.getByRole('banner')).toBeInTheDocument;
